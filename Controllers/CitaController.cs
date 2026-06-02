@@ -93,7 +93,6 @@ namespace Citas_App.Controllers
                 Estado="Pendiente"                          
             },
         };
-        // Lista con filtro opcional por género
 
         public IActionResult Index()
         {
@@ -103,9 +102,6 @@ namespace Citas_App.Controllers
              
             return View(_citas);
         }
-
-
-        // Detalle de un item
 
         public IActionResult PorPaciente(int pacienteId)
         {

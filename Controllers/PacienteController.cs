@@ -33,13 +33,7 @@ namespace Citas_App.Controllers
             }
         };
         
-        // Lista con filtro opcional por género
-
         public IActionResult Index() => View(_pacientes);
-
-
-
-        // Detalle de un item
 
         public IActionResult Detalle(int id)
         {

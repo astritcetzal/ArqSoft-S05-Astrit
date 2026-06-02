@@ -33,14 +33,12 @@ namespace Citas_App.Controllers
                 NumeroLicencia = "CA-30117"
             },
         };
-        // Lista con filtro opcional por género
-
+       
         public IActionResult Index() => View(_medicos);
         
 
 
-        // Detalle de un item
-
+        
         public IActionResult Detalle(int id)
         {
             var medico = _medicos.FirstOrDefault(m => m.Id == id);
