@@ -24,17 +24,18 @@
         <tr>
             <td>@c.Fecha.ToString("dd/MM/yyyy")</td>
             <td>@c.Hora.ToString("HH:mm")</td>
-            <td>@(paciente != null ? $"{paciente.Nombre} {paciente.Apellido}" : "—")</td>
+            <td>@(paciente != null ? $"{paciente.Nombre} {paciente.Apellido}" : "-")</td>
             <td>@(medico != null ? $"{medico.Nombre} {medico.Apellido}" : "—")</td>
             <td>@c.Motivo</td>
             <td>@c.Estado</td>
         </tr>
 
-        <a asp-controller="Cita" asp-action="Index"> Ver todas la citas</a>
-
+        
     }
 </table>
 
 <br/>
+<a asp-controller="Cita" asp-action="Index"> Ver todas la citas</a>
+
 
 
