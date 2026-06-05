@@ -22,9 +22,9 @@
   },
   {
     "Id": 4,
-    "Nombre": "Jorge",
-    "Apellido": "Pedrozo",
-    "Especialidad": "Fisicoquímica",
-    "NumeroLicencia": "FQ-90289"
+    "Nombre": "Pedro",
+    "Apellido": "Puc",
+    "Especialidad": "Neurología",
+    "NumeroLicencia": "NE-90289"
   }
 ]

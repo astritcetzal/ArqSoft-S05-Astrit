@@ -22,10 +22,34 @@ namespace Citas_App.Repositories
             var json = File.ReadAllText(_path);
             return JsonSerializer.Deserialize<List<Medico>>(json) ?? new();
         }
+
         public Medico? ObtenerPorId(int id)
         {
             return ObtenerTodos().FirstOrDefault(c => c.Id == id);
 
         }
+
+        public void Agregar(Medico medico)
+        {
+            var medicos = ObtenerTodos();
+
+            // Auto-incrementar el Id
+            medico.Id = medicos.Count > 0
+                      ? medicos.Max(i => i.Id) + 1
+                      : 1;
+
+            medicos.Add(medico);
+            Guardar(medicos);
+        }
+        private void Guardar(List<Medico> items)
+        {
+            var opciones = new JsonSerializerOptions
+            {
+                WriteIndented = true   // JSON legible para humanos
+            };
+            var json = JsonSerializer.Serialize(items, opciones);
+            File.WriteAllText(_path, json);
+        }
+
     }
 }

@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Citas_App.Interfaces;
 using Citas_App.Models;
-using Citas_App.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 namespace Citas_App.Controllers
 {
     public class PacienteController : Controller
@@ -19,6 +20,19 @@ namespace Citas_App.Controllers
         {
             var paciente = _pacienteRepository.ObtenerPorId(id);
             return paciente == null ? NotFound() : View(paciente);
+        }
+       
+        public IActionResult Agregar()
+        {
+            return View();
+        }
+
+        
+        [HttpPost]
+        public IActionResult Agregar(Paciente paciente)
+        {
+            _pacienteRepository.Agregar(paciente);
+            return RedirectToAction("Index");
         }
     }
 }

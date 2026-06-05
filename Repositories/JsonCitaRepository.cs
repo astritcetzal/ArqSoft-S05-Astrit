@@ -34,6 +34,29 @@ namespace Citas_App.Repositories
         {
             return ObtenerTodos().FirstOrDefault(c => c.PacienteId == pacienteId);
     }
-          
+        public void Agregar(Cita cita)
+        {
+            var citas = ObtenerTodos();
+
+            // Auto-incrementar el Id
+            cita.Id = citas.Count > 0
+                      ? citas.Max(i => i.Id) + 1
+                      : 1;
+
+            citas.Add(cita);
+            Guardar(citas);
+        }
+
+        // Método privado: serializa y escribe el archivo
+        private void Guardar(List<Cita> citas)
+        {
+            var opciones = new JsonSerializerOptions
+            {
+                WriteIndented = true   // JSON legible para humanos
+            };
+            var json = JsonSerializer.Serialize(citas, opciones);
+            File.WriteAllText(_path, json);
+        }
+
     }
 }

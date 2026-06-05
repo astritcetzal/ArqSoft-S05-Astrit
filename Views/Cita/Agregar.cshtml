@@ -1,0 +1,48 @@
+﻿@model Citas_App.Models.Cita
+
+<div class="contenedos-formulario">
+    <h1>Agregar cita</h1>
+    <form asp-action="Agregar" method="post" enctype="multipart/form-data">
+        
+        <div class="cita-input">
+            <label>Paciente</label>
+            <select asp-for="PacienteId">
+                <option value="">-- Selecciona un paciente --</option>
+        
+                @foreach (var p in ViewBag.Pacientes)
+                {
+                    <option value="@p.Id">@p.Nombre @p.Apellido</option>
+                }
+            </select>
+        </div>
+        <div class="cita-input">
+            <label>Médico</label>
+            <select asp-for="MedicoId">
+                <option value="">-- Selecciona un médico --</option>
+        
+                @foreach (var m in ViewBag.Medicos)
+                {
+                    <option value="@m.Id">@m.Nombre @m.Apellido</option>
+                }
+            </select>
+        </div>
+        <div class="cita-input">
+            <label>Fecha</label>
+            <input asp-for="Fecha" type="date" />
+        </div>
+        <div class="cita-input">
+            <label>Hora</label>
+            <input asp-for="Hora" type="time" />
+        </div>
+        <div class="cita-input">
+            <label>Motivo</label>
+            <textarea asp-for="Motivo"> </textarea>
+        </div>
+            <button type="submit" class="btn-guardar">Guardar cita</button>
+
+        </form>
+
+        <hr />
+        <a asp-action="Index" class="link-cancelar">&larr; Cancelar</a>
+
+    </div>

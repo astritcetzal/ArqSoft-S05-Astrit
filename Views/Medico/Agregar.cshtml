@@ -1,0 +1,30 @@
+﻿@model Citas_App.Models.Medico
+
+<div class="contenedos-formulario">
+    <h1>Agregar álbum</h1>
+    <form asp-action="Agregar" method="post" enctype="multipart/form-data">
+        
+        <div class="medico-input">
+            <label>Nombre</label>
+            <input asp-for="Nombre" />
+        </div>
+        <div class="medico-input">
+            <label>Apellido</label>
+            <input asp-for="Apellido" />
+        </div>
+        <div class="medico-input">
+            <label>Especialidad</label>
+            <input asp-for="Especialidad" />
+        </div>
+        <div class="medico-input">
+            <label>Numero de licencia</label>
+            <input asp-for="NumeroLicencia" />
+        </div>
+            <button type="submit" class="btn-guardar">Guardar</button>
+
+        </form>
+
+        <hr />
+        <a asp-action="Index" class="link-cancelar">&larr; Cancelar</a>
+
+    </div>

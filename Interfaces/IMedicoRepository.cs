@@ -5,6 +5,6 @@ namespace Citas_App.Interfaces
     {
         List<Medico> ObtenerTodos();
         Medico? ObtenerPorId(int id);
-        //Void agregar(Medico medico)
+        void Agregar(Medico medico);
     }
 }

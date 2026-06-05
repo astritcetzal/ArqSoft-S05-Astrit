@@ -6,7 +6,7 @@ namespace Citas_App.Interfaces
     {
         List<Cita> ObtenerTodos();
         Cita? ObtenerPorPaciente(int pacienteId);
-        //Void agregar(Cita cita);
+        void Agregar(Cita cita);
 
     }
 

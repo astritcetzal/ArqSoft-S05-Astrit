@@ -1,6 +1,8 @@
-﻿using Citas_App.Models;
+﻿using Citas_App.Interfaces;
+using Citas_App.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Citas_App.Interfaces;
+using System.Text.Json;
 namespace Citas_App.Controllers
 {
     public class MedicoController : Controller
@@ -20,6 +22,19 @@ namespace Citas_App.Controllers
         {
             var medico = _medicoRepository.ObtenerPorId(id);
             return medico == null ? NotFound() : View(medico);
+        }
+        
+        public IActionResult Agregar()
+        {
+            return View();
+        }
+
+        
+        [HttpPost]
+        public IActionResult Agregar(Medico medico)
+        {
+            _medicoRepository.Agregar(medico);
+            return RedirectToAction("Index");
         }
     }
 

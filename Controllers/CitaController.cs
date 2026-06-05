@@ -1,7 +1,8 @@
-﻿using System.Linq;
-using Citas_App.Interfaces;
+﻿using Citas_App.Interfaces;
 using Citas_App.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 namespace Citas_App.Controllers
 
 {
@@ -34,5 +35,22 @@ namespace Citas_App.Controllers
             ViewBag.Medicos = _medicoRepository.ObtenerTodos();
             return View(citas);
         }
+        
+        public IActionResult Agregar()
+        {
+            ViewBag.Pacientes = _pacienteRepository.ObtenerTodos();
+            ViewBag.Medicos = _medicoRepository.ObtenerTodos();
+            return View();
+        }
+
+       
+        // Formulario — POST
+        [HttpPost]
+        public IActionResult Agregar(Cita cita)
+        {
+            _citaRepository.Agregar(cita);
+            return RedirectToAction("Index");
+        }
+
     }
 }
