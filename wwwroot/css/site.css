@@ -1,3 +1,21 @@
+:root {
+    --aqua-principal: #009688; /* Tono verde-azul vibrante */
+    --aqua-claro: #E0F2F1; /* Fondo muy suave casi blanco */
+    --aqua-oscuro: #00695C; /* Tono profundo para botones al pasar el mouse */
+    --text-oscuro: #212529;
+    --texto-contraste: #00251A; /* Verde muy oscuro para que la lectura no canse */
+    --verde-pastel: #B2DFDB; /* Excelente para bordes y detalles suaves */
+    --texto-oscuro: #2C1A4D;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 html {
   font-size: 14px;
 }
@@ -18,7 +36,12 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background:#d2fef8 ;
+    background-attachment: fixed; 
+    min-height: 100vh;
+    color: black;
+    line-height: 1.6;
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
@@ -29,3 +52,169 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+.contenedor-formulario {
+    background-color: rgba(255,255,255,0.95);
+    width: 80%;
+    margin: 40px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(106,27,154,0.3);
+}
+
+/*cita*/
+
+.cita-input {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.cita-input input, .cita-input textarea {
+    padding: 10px;
+    border: 2px solid var(--lila-pastel);
+    border-radius: 8px;
+    outline: none;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+/*medico*/
+
+.medico-input {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+    .medico-input input, .medico-input textarea {
+        padding: 10px;
+        border: 2px solid var(--lila-pastel);
+        border-radius: 8px;
+        outline: none;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+    }
+    /* Cuando el usuario hace clic para escribir */
+    .medico-input input:focus, .medico-input textarea:focus {
+        border-color: var(--morado); 
+    }
+
+/*Paciente*/
+
+.paciente-input {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+    .paciente-input input, .paciente-input textarea {
+        padding: 10px;
+        border: 2px solid var(--lila-pastel);
+        border-radius: 8px;
+        outline: none;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+    }
+
+
+
+/* --- ESTILOS ACTUALIZADOS PARA TABLAS --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    background-color: white;
+    box-shadow: 0 4px 15px rgba(0, 150, 136, 0.15); 
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--verde-pastel); 
+    color: var(--text-oscuro);
+}
+
+th {
+    background-color: var(--aqua-principal); 
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+tr:hover td {
+    background-color: var(--aqua-claro); 
+    transition: background-color 0.2s ease;
+}
+
+/* --- ESTILOS ACTUALIZADOS PARA LOS BOTONES --- */
+.btn-guardar {
+    background-color: var(--aqua-principal);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    width: 100%; 
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .btn-guardar:hover {
+        background-color: var(--aqua-oscuro);
+    }
+
+.link-cancelar {
+    background-color: var(--aqua-principal);
+    text-decoration: none;
+    font-weight: 500;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 1.1rem;
+}
+
+.btn-agregar-medico, .btn-agregar-paciente, .btn-agregar-cita {
+    background-color: var(--verde-pastel);
+    color: var(--texto-contraste);
+    padding: 6px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    border: 2px solid var(--texto-oscuro); 
+    box-shadow: 2px 2px 0px var(--texto-oscuro); 
+    transition: all 0.2s ease;
+    display: inline-block;
+
+}
+
+.cita-input input, .cita-input textarea, .cita-input select,
+.medico-input input, .medico-input textarea,
+.paciente-input input, .paciente-input textarea {
+    padding: 10px;
+    border: 2px solid var(--verde-pastel);
+    border-radius: 8px;
+    outline: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 100%; /* Asegura que la casilla ocupe todo el ancho disponible */
+    background-color: #f8fcfb; 
+    color: var(--text-oscuro);
+}
+
+    .cita-input input:focus, .cita-input textarea:focus, .cita-input select:focus,
+    .medico-input input:focus, .medico-input textarea:focus,
+    .paciente-input input:focus, .paciente-input textarea:focus {
+        border-color: var(--aqua-principal);
+        background-color: white;
+        box-shadow: 0 0 5px rgba(0, 150, 136, 0.3); 
+    }
+
+
