@@ -1,10 +1,54 @@
+@import url('site.css');
+
+html {
+    font-size: 20px;
+}
+
 :root {
-    --azul-principal: #7BA1C7; 
-    --azul-claro: #F2F7FB; 
-    --azul-oscuro: #5C83A8; 
+    --azul-principal: #7BA1C7;
+    --azul-claro: #F2F7FB;
+    --azul-oscuro: #5C83A8;
     --text-oscuro: #2C3E50;
-    --texto-contraste: #1B2631; 
-    --azul-pastel: #D1E1F0; 
+    --texto-contraste: #1B2631;
+    --azul-pastel: #D1E1F0;
+}
+
+
+@media (min-width: 768px) {
+    html {
+        font-size: 18px;
+    }
+}
+
+.log {
+    text-align: right;
+    position: relative;
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem var( --azul-pastel);
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-attachment: fixed; /* El fondo se queda fijo al hacer scroll */
+    min-height: 100vh;
+    color: black;
+    line-height: 1.6;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+    text-align: start;
 }
 
 /* --- ESTILOS ACTUALIZADOS PARA TABLAS --- */
@@ -133,9 +177,45 @@ textarea {
     color: var(--text-oscuro);
 }
 
-/* Truco para domar el pie de página de .NET Core */
+
 footer {
     position: relative !important; /* Obliga al footer a formarse debajo del contenido, no flotar encima */
     bottom: auto !important;
-    margin-top: 40px; /* Le da un respiro al contenido de arriba */
+    margin-top: 40px; 
 }
+
+.hero-container {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: var(--azul-claro);
+    border-radius: 20px;
+    margin-top: 40px;
+}
+
+    .hero-container h1 {
+        color: var(--azul-principal);
+        font-weight: 700;
+    }
+
+.actions {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn-home {
+    background-color: var(--azul-principal);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+    .btn-home:hover {
+        background-color: var(--azul-oscuro);
+        color: white;
+        text-decoration: none;
+    }

@@ -1,8 +1,16 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Bienvenidos</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="hero-container">
+    <h1 class="display-4">Sistema de Gestión Médica</h1>
+    <p class="lead">Plataforma dedicada a la administración eficiente de citas, pacientes y personal médico.</p>
+    <hr class="my-4">
+    <p>Utiliza el menú de navegación para acceder a los módulos de gestión.</p>
+    
+    <div class="actions">
+        <a asp-controller="Cita" asp-action="Index" class="btn-home">Gestionar Citas</a>
+        <a asp-controller="Paciente" asp-action="Index" class="btn-home">Ver Pacientes</a>
+        <a asp-controller="Medico" asp-action="Index" class="btn-home">Ver Médicos</a>
+    </div>
 </div>
