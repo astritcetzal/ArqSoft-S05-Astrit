@@ -48,7 +48,7 @@ El sistema cuenta con las siguientes capacidades operativas:
 **Pacientes**
 ![Pacientes](docs/pacientes.png)
 **Detalle Paciente**
-![Pacientes](docs/detallepaciente.png)
+![Pacientes](docs/detallePaciente.png)
 **Agregar Pacientes**
 ![Pacientes](docs/agregarpaccientes.png)
 
