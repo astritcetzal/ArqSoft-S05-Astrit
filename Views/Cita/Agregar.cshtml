@@ -38,6 +38,15 @@
             <label>Motivo</label>
             <textarea asp-for="Motivo"> </textarea>
         </div>
+        <div class="cita-input">
+            <label>Estado de la cita</label>
+            <select asp-for="Estado">
+                <option value="Pendiente">Pendiente</option>
+                <option value="Confirmada">Confirmada</option>
+                <option value="Cancelada">Cancelada</option>
+            </select>
+        </div>
+        <hr/>
             <button type="submit" class="btn-guardar">Guardar cita</button>
 
         </form>

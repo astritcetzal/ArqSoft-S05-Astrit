@@ -16,7 +16,7 @@
   {
     "Id": 3,
     "Nombre": "Roberto",
-    "Apellido": "Sánchez",
+    "Apellido": "S\u00E1nchez",
     "Especialidad": "Cardiología",
     "NumeroLicencia": "CA-30117"
   },
@@ -26,5 +26,12 @@
     "Apellido": "Puc",
     "Especialidad": "Neurología",
     "NumeroLicencia": "NE-90289"
+  },
+  {
+    "Id": 5,
+    "Nombre": "lulu",
+    "Apellido": "canto",
+    "Especialidad": "Cardiología",
+    "NumeroLicencia": "CA-30989"
   }
 ]
