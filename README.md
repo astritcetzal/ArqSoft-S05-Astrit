@@ -30,8 +30,19 @@ El sistema cuenta con las siguientes capacidades operativas:
     * Filtrado específico para visualizar únicamente el historial de citas de un paciente determinado.
     * Registro de nuevas citas utilizando menús desplegables dinámicos que se alimentan de los datos de pacientes y médicos existentes para evitar errores de captura.
 
+## Declaración de uso de IA
+Para el desarrollo de este proyecto se utilizaron herramientas de Inteligencia Artificial como asistentes de programación bajo un enfoque de copilotaje. El uso de la IA se limitó estrictamente a:
+* Verificación lógica y depuración de errores de enrutamiento y paso de parámetros entre vistas y controladores.
+* Asistencia en la estructuración de reglas CSS para la alineación y el diseño visual de las tablas y formularios.
+* Resolución de dudas conceptuales sobre arquitectura de software (como la diferencia entre repositorios y listas, y el uso de la serialización JSON).
+Toda la lógica base, la estructura del proyecto y la integración de los componentes fue analizada, comprendida y dirigida manualmente para garantizar el aprendizaje y dominio de los conceptos de ingeniería de software aplicados.
+
+
+
+
 ## Agradecimientos
 
+- **Profesor Jorge Javier Pedrozo Romero** por el apoyo constante y la guía durante el desarrollo de la materia.
 
 ---
 ## Contacto
