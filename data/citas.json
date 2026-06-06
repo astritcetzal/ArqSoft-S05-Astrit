@@ -43,5 +43,14 @@
     "Hora": "16:40:00",
     "Motivo": "Chequeo anual",
     "Estado": "Pendiente"
+  },
+  {
+    "Id": 6,
+    "PacienteId": 5,
+    "MedicoId": 6,
+    "Fecha": "2026-06-27",
+    "Hora": "09:11:00",
+    "Motivo": "Bebe de 5 a\u00F1os necesita chequeo",
+    "Estado": "Confirmada"
   }
 ]

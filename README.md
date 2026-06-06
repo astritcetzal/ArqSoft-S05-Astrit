@@ -30,6 +30,40 @@ El sistema cuenta con las siguientes capacidades operativas:
     * Filtrado específico para visualizar únicamente el historial de citas de un paciente determinado.
     * Registro de nuevas citas utilizando menús desplegables dinámicos que se alimentan de los datos de pacientes y médicos existentes para evitar errores de captura.
 
+## Capturas de pantalla
+
+**Página Principal (Inicio)**
+
+![Página de inicio](docs/inicio.png)
+
+
+**Citas**
+![Cita](docs/agenda.png)
+**Detalle por paciente**
+![Cita](docs/porpacientes.png)
+**Agregar cita**
+
+![Agregar cita](docs/agregarcitas.png)
+
+**Pacientes**
+![Pacientes](docs/pacientes.png)
+**Detalle Paciente**
+![Pacientes](docs/detallepaciente.png)
+**Agregar Pacientes**
+![Pacientes](docs/agregarpaccientes.png)
+
+**Médicos**
+![Médicos](docs/medicos.png)
+**Detalle Médicos**
+![Médicos](docs/detalleMedico.png)
+**Agregar Médicos**
+![Agregar Médicos](docs/agregarmedico.png)
+
+**Privacidad**
+![Privacidad](docs/privacidad1.png)
+![Privacidad](docs/privacidad2.png)
+
+
 ## Declaración de uso de IA
 Para el desarrollo de este proyecto se utilizaron herramientas de Inteligencia Artificial como asistentes de programación bajo un enfoque de copilotaje. El uso de la IA se limitó estrictamente a:
 * Verificación lógica y depuración de errores de enrutamiento y paso de parámetros entre vistas y controladores.
