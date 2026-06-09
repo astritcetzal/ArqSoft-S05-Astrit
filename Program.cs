@@ -1,5 +1,5 @@
-using Citas_App.Interfaces;
-using Citas_App.Repositories;
+using Citas_App.Domain.Interfaces;
+using Citas_App.Infrastructure.Repositories;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

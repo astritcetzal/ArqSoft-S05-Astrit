@@ -1,9 +1,8 @@
-﻿using Citas_App.Interfaces;
-using Citas_App.Models;
-using Microsoft.AspNetCore.Authorization;
+﻿using Citas_App.Domain.Interfaces;
+using Citas_App.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-namespace Citas_App.Controllers
+namespace Citas_App.Web.Controllers
 
 {
     public class CitaController : Controller

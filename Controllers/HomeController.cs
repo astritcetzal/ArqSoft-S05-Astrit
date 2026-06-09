@@ -1,8 +1,8 @@
-using Citas_App.Models;
+using Citas_App.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace Citas_App.Controllers
+namespace Citas_App.Web.Controllers
 {
     public class HomeController : Controller
     {

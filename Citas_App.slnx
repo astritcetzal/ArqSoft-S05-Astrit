@@ -1,3 +1,5 @@
 <Solution>
-  <Project Path="Citas_App.csproj" />
+  <Project Path="../Citas_App.Domain/Citas_App.Domain.csproj" Id="921f5443-de29-4200-9eed-47a204a3126b" />
+  <Project Path="../Citas_App.Infrastructure/Citas_App.Infrastructure.csproj" Id="0c7656a5-d394-4067-bddc-cddb9877be76" />
+  <Project Path="Citas_App.Web.csproj" />
 </Solution>
