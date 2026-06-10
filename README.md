@@ -11,25 +11,33 @@
 # Citas_App - Sistema de Gestión de Citas Médicas
 
 ## Descripción del Proyecto
-Citas_App es un sistema de gestión desarrollado como proyecto académico para administrar la agenda de un consultorio o clínica. La aplicación permite llevar un registro ordenado de médicos, pacientes y las citas programadas entre ellos. El objetivo principal de este proyecto es demostrar la implementación del patrón arquitectónico MVC (Modelo-Vista-Controlador) y la persistencia de datos mediante archivos locales, asegurando una experiencia de usuario fluida y una estructura de código escalable.
+Este proyecto es una plataforma web creada para facilitar la administración del día a día en un consultorio médico. Está desarrollada con ASP.NET Core MVC, pero el mayor logro de esta versión es la implementación de la **Arquitectura Hexagonal**. En lugar de tener todo el código mezclado, el sistema está dividido lógicamente en tres áreas independientes: las reglas del negocio (Domain), el manejo de datos (Infrastructure) y las pantallas visuales (Web). Esto permite que el código sea muy ordenado, fácil de leer y sencillo de actualizar en el futuro sin riesgo de romper otras partes de la aplicación.
 
+Para el almacenamiento de información, decidí no depender de instalaciones complejas de bases de datos. En su lugar, el sistema guarda de forma segura los registros de pacientes, el directorio de médicos y la agenda de citas en archivos JSON locales. Esto hace que el proyecto sea súper ligero, portátil y pueda ejecutarse en cualquier computadora de forma casi instantánea. 
+
+Además de la estructura interna, puse un gran enfoque en la experiencia del usuario final. La interfaz cuenta con un diseño limpio y profesional, y los formularios están pensados para evitar errores humanos; por ejemplo, al crear una nueva cita, el sistema genera automáticamente opciones desplegables leyendo los pacientes y médicos que ya existen, garantizando que la información siempre esté cruzada de manera perfecta.
+Para el almacenamiento de información, decidí no depender de instalaciones complejas de bases de datos. En su lugar, el sistema guarda de forma segura los registros de pacientes, el directorio de médicos y la agenda de citas en archivos JSON locales. Esto hace que el proyecto sea súper ligero, portátil y pueda ejecutarse en cualquier computadora de forma casi instantánea. 
+
+Además de la estructura del código, puse un gran enfoque en la experiencia del usuario final. La interfaz cuenta con un diseño limpio y profesional, y los formularios están pensados para evitar errores humanos; por ejemplo, al crear una nueva cita, el sistema genera automáticamente opciones desplegables leyendo los pacientes y médicos que ya existen, garantizando que la información siempre esté cruzada de manera perfecta.
 ## Cómo se construyó (Tecnologías)
 Este proyecto fue desarrollado utilizando el ecosistema de Microsoft y tecnologías web estándar:
 
 * **Backend:** C# con el framework ASP.NET Core MVC.
-* **Frontend:** Vistas generadas con Razor (HTML5) y estilizadas con CSS3 puro, implementando una paleta de colores personalizada basada en tonos azul acero para transmitir profesionalismo y limpieza.
-* **Persistencia de Datos:** Almacenamiento local utilizando archivos de texto en formato JSON. Se implementó el patrón Repositorio (Repository Pattern) junto con interfaces (`ICitaRepository`, `IMedicoRepository`, `IPacienteRepository`) y procesos de serialización/deserialización para gestionar la lectura y escritura de datos.
-* **Arquitectura:** Separación clara de responsabilidades entre Controladores, Modelos (incluyendo DTOs como `CitaJson`), Vistas y Repositorios.
+* **Frontend:** Vistas generadas con Razor (HTML5) y estilizadas con CSS3 puro, implementando una paleta de colores personalizada basada en tonos azul, verde y morado.
+* **Persistencia de Datos:** Almacenamiento local utilizando archivos de texto en formato JSON. Se implementó el patrón Repositorio (Repository Pattern) junto con procesos de serialización/deserialización para gestionar la lectura y escritura de datos, utilizando `IWebHostEnvironment` para el manejo dinámico de rutas en el servidor.
+* **Arquitectura (Clean Architecture / Hexagonal):** El proyecto evolucionó de un modelo monolítico a una arquitectura en capas distribuidas en tres proyectos independientes:
+    * **Domain:** Capa central que contiene las entidades del negocio (`Cita`, `Medico`, `Paciente`) y las abstracciones o puertos (`ICitaRepository`, `IMedicoRepository`, `IPacienteRepository`).
+    * **Infrastructure:** Capa de adaptadores que implementa la persistencia de datos (lectura y escritura de archivos JSON) y depende exclusivamente del dominio.
+    * **Web:** Capa de presentación que contiene los Controladores y las Vistas, comunicándose de manera desacoplada a través de la Inyección de Dependencias configurada en el contenedor de servicios (`Program.cs`).
 
 ## Funcionalidades Implementadas
 El sistema cuenta con las siguientes capacidades operativas:
 
 * **Gestión de Pacientes:** Visualización del listado completo, consulta de detalles individuales (perfil) y registro de nuevos pacientes con autoincremento de ID.
 * **Gestión de Médicos:** Visualización del directorio médico, consulta de detalles por especialista y registro de nuevo personal médico.
-* **Gestión de Citas:**  Visualización de la agenda general con cruce de datos (nombre del paciente y nombre del médico).
+* **Gestión de Citas:** * Visualización de la agenda general con cruce de datos (nombre del paciente y nombre del médico).
     * Filtrado específico para visualizar únicamente el historial de citas de un paciente determinado.
     * Registro de nuevas citas utilizando menús desplegables dinámicos que se alimentan de los datos de pacientes y médicos existentes para evitar errores de captura.
-
 ## Capturas de pantalla
 
 **Página Principal (Inicio)**
@@ -66,12 +74,9 @@ El sistema cuenta con las siguientes capacidades operativas:
 
 ## Declaración de uso de IA
 Para el desarrollo de este proyecto se utilizaron herramientas de Inteligencia Artificial como asistentes de programación bajo un enfoque de copilotaje. El uso de la IA se limitó estrictamente a:
+
 * Verificación lógica y depuración de errores de enrutamiento y paso de parámetros entre vistas y controladores.
-* Asistencia en la estructuración de reglas CSS para la alineación y el diseño visual de las tablas y formularios.
-* Resolución de dudas conceptuales sobre arquitectura de software (como la diferencia entre repositorios y listas, y el uso de la serialización JSON).
-Toda la lógica base, la estructura del proyecto y la integración de los componentes fue analizada, comprendida y dirigida manualmente para garantizar el aprendizaje y dominio de los conceptos de ingeniería de software aplicados.
-
-
+* Resolución de dudas conceptuales sobre arquitectura de software, específicamente en el proceso de refactorización hacia la Arquitectura Hexagonal. Esto incluyó orientación sobre la correcta vinculación de referencias entre proyectos (Project References) y la configuración de la Inyección de Dependencias.
 
 
 ## Agradecimientos
@@ -87,7 +92,7 @@ Toda la lógica base, la estructura del proyecto y la integración de los compon
 ---
 
 ## Derechos de Autor (Copyright)
-
+Este proyecto es de código abierto y se distribuye con fines estrictamente académicos y educativos. Se concede permiso de manera gratuita a cualquier persona que obtenga una copia de este software para utilizarlo, modificarlo, compilarlo y distribuirlo sin restricciones, con el objetivo de fomentar el aprendizaje, la investigación y el desarrollo de competencias en arquitectura de software.
 
 ---
 <div align="center">
