@@ -87,7 +87,7 @@ Toda la lógica base, la estructura del proyecto y la integración de los compon
 ---
 
 ## Derechos de Autor (Copyright)
-
+Este proyecto es de código abierto y se distribuye con fines estrictamente académicos y educativos. Se concede permiso de manera gratuita a cualquier persona que obtenga una copia de este software para utilizarlo, modificarlo, compilarlo y distribuirlo sin restricciones, con el objetivo de fomentar el aprendizaje, la investigación y el desarrollo de competencias en arquitectura de software.
 
 ---
 <div align="center">
