@@ -1,41 +1,56 @@
 using Citas_App.Domain.Interfaces;
 using Citas_App.Infrastructure.Repositories;
 using Citas_App.Domain.Models;
+using Citas_App.Application.Services;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // ── 1. Carpeta de datos ───────────────────────────────────────────────────────
 var dataFolder = Path.Combine(builder.Environment.ContentRootPath, "data");
 Directory.CreateDirectory(dataFolder);
+
+// Rutas para CSV
 /*
 var csvPacientes = Path.Combine(dataFolder, "pacientes.csv");
 var csvMedicos = Path.Combine(dataFolder, "medicos.csv");
 var csvCitas = Path.Combine(dataFolder, "citas.csv");
 */
-//var sqlitePath = Path.Combine(dataFolder, "citasapp.db");
+// Ruta para SQLite (un solo archivo .db para las 3 tablas)
+var sqlitePath = Path.Combine(dataFolder, "citasapp.db");
 
 
-// ▶ Bloque A — JSON 
+// ── 2. Elige tus Adapters ─────────────────────────────────────────────────────
+// Descomenta el bloque que quieras y comenta los otros dos.
+// ¡Las interfaces (Ports) no cambian!
+
+// ▶ Bloque A — JSON (como estaba antes)
 
 builder.Services.AddSingleton<IPacienteRepository, JsonPacienteRepository>();
 builder.Services.AddSingleton<IMedicoRepository,   JsonMedicoRepository>();
 builder.Services.AddSingleton<ICitaRepository,     JsonCitaRepository>();
 
 
-// ▶ Bloque B — CSV  ← ACTIVO AHORA
+// ▶ Bloque B — CSV  ← activo ahora
 /*
 builder.Services.AddSingleton<IPacienteRepository>(sp => (IPacienteRepository)new CsvPacienteRepository(csvPacientes));
 builder.Services.AddSingleton<IMedicoRepository>(sp => (IMedicoRepository)new CsvMedicoRepository(csvMedicos));
 builder.Services.AddSingleton<ICitaRepository>(sp => (ICitaRepository)new CsvCitaRepository(csvCitas));
 */
-
 // ▶ Bloque C — SQLite
 /*
 builder.Services.AddSingleton<IPacienteRepository>(_ => new SqlitePacienteRepository(sqlitePath));
-builder.Services.AddSingleton<IMedicoRepository>  (_ => new SqliteMedicoRepository(sqlitePath));
-builder.Services.AddSingleton<ICitaRepository>    (_ => new SqliteCitaRepository(sqlitePath));
+builder.Services.AddSingleton<IMedicoRepository>(_ => new SqliteMedicoRepository(sqlitePath));
+builder.Services.AddSingleton<ICitaRepository>(_ => new SqliteCitaRepository(sqlitePath));
 */
 
-// ── 3. MVC ────────────────────────────────────────────────────────────────────
+
+// ── 3. Servicios de aplicación (no cambian con el Adapter) ───────────────────
+builder.Services.AddScoped<PacienteService>();
+builder.Services.AddScoped<MedicoService>();
+builder.Services.AddScoped<CitaService>();
+
+// ── 4. MVC ────────────────────────────────────────────────────────────────────
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

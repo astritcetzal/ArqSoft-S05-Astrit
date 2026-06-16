@@ -1,4 +1,5 @@
-﻿using Citas_App.Domain.Interfaces;
+﻿using Citas_App.Application.Services;
+using Citas_App.Domain.Interfaces;
 using Citas_App.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
@@ -6,20 +7,20 @@ namespace Citas_App.Web.Controllers
 {
     public class MedicoController : Controller
     {
-        private readonly IMedicoRepository _medicoRepository;
+        private readonly MedicoService _medicoSer;
        
-        public MedicoController(IMedicoRepository medicoRepository, IPacienteRepository pacienteRepository, ICitaRepository citaRepository)
+        public MedicoController(MedicoService medico)
         {
-            _medicoRepository = medicoRepository;
+            _medicoSer = medico;
             
         }
 
-        public IActionResult Index() => View(_medicoRepository.ObtenerTodos());
+        public IActionResult Index() => View(_medicoSer.ObtenerTodos());
         
         
         public IActionResult Detalle(int id)
         {
-            var medico = _medicoRepository.ObtenerPorId(id);
+            var medico = _medicoSer.ObtenerPorId(id);
             return medico == null ? NotFound() : View(medico);
         }
         
@@ -32,7 +33,7 @@ namespace Citas_App.Web.Controllers
         [HttpPost]
         public IActionResult Agregar(Medico medico)
         {
-            _medicoRepository.Agregar(medico);
+            _medicoSer.Agregar(medico);
             return RedirectToAction("Index");
         }
     }

@@ -7,12 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Citas_App.Domain\Citas_App.Domain.csproj" />
-    <ProjectReference Include="..\Citas_App.Infrastructure\Citas_App.Infrastructure.csproj" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.9" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.9" />
+    <ProjectReference Include="..\Citas_App.Application\Citas_App.Application.csproj" />
+    <ProjectReference Include="..\Citas_App.Infrastructure\Citas_App.Infrastructure.csproj" />
   </ItemGroup>
+
+ 
+
+  
 
 </Project>
