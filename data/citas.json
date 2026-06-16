@@ -14,7 +14,7 @@
     "MedicoId": 2,
     "Fecha": "2026-06-01",
     "Hora": "10:00:00",
-    "Motivo": "Revisión de resultados",
+    "Motivo": "Revisi\u00F3n de resultados",
     "Estado": "Pendiente"
   },
   {
@@ -32,7 +32,7 @@
     "MedicoId": 4,
     "Fecha": "2026-06-03",
     "Hora": "12:00:00",
-    "Motivo": "Cirugía",
+    "Motivo": "Cirug\u00EDa",
     "Estado": "Confirmada"
   },
   {
@@ -50,7 +50,16 @@
     "MedicoId": 6,
     "Fecha": "2026-06-27",
     "Hora": "09:11:00",
-    "Motivo": "Bebe de 5 años necesita chequeo",
+    "Motivo": "Bebe de 5 a\u00F1os necesita chequeo",
+    "Estado": "Confirmada"
+  },
+  {
+    "Id": 7,
+    "PacienteId": 2,
+    "MedicoId": 2,
+    "Fecha": "2026-07-14",
+    "Hora": "04:27:00",
+    "Motivo": "Dolor de espalda",
     "Estado": "Confirmada"
   }
 ]
