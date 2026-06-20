@@ -44,6 +44,9 @@ El sistema cuenta con las siguientes capacidades operativas:
 * **Gestión de Citas:** * Visualización de la agenda general con cruce de datos (nombre del paciente y nombre del médico).
     * Filtrado específico para visualizar únicamente el historial de citas de un paciente determinado.
     * Registro de nuevas citas utilizando menús desplegables dinámicos que se alimentan de los datos de pacientes y médicos existentes para evitar errores de captura.
+
+
+
 ## Capturas de pantalla
 
 **Página Principal (Inicio)**
@@ -54,7 +57,7 @@ El sistema cuenta con las siguientes capacidades operativas:
 **Citas**
 ![Cita](docs/agenda.png)
 **Detalle por paciente**
-![Cita](docs/porpacientes.png)
+![Cita](docs/porpacientes.png)  
 **Agregar cita**
 
 ![Agregar cita](docs/agregarcitas.png)
