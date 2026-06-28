@@ -55,6 +55,11 @@ Archivos JSON en `data/` dentro de cada proyecto cliente.
 - **Decorator** (`LoggingPacienteRepository`) — agrega logging con timestamp sin modificar el repositorio original
 - **Observer** (`SmsObserver`, `EmailObserver`) — notifican automáticamente al confirmar una cita sin acoplar CitaService a los canales de notificación
 
+
+![Captura]( docs/pruebas_get.png )
+
+![Captura]( docs/Sms_Email.png )
+
 ## Requisitos
 - .NET 10.0
 - Visual Studio 2022

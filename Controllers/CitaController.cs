@@ -1,40 +1,60 @@
 ﻿using Citas_App.Application.Services;
+using Citas_App.Domain.Interfaces;
+using Citas_App.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+namespace Citas_App.Web.Controllers
 
-namespace CitasApp.Api.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class CitasController : ControllerBase
+    public class CitaController : Controller
     {
-        private readonly CitaService _citaService;
-        private readonly PacienteService _pacienteService;
-        private readonly MedicoService _medicoService;
+        //private readonly ICitaRepository _citaRepository;
+        //private readonly IPacienteRepository _pacienteRepository;
+        //private readonly IMedicoRepository _medicoRepository;
+        private readonly CitaService _citaSer;
+        private readonly PacienteService _pacienteSer;
+        private readonly MedicoService _medicoSer;
 
-        public CitasController(CitaService citaService, PacienteService pacienteService, MedicoService medicoService)
+
+        public CitaController(CitaService cita, PacienteService paciente, MedicoService medico)
         {
-            _citaService = citaService;
-            _pacienteService = pacienteService;
-            _medicoService = medicoService;
+            _citaSer = cita;
+            _pacienteSer = paciente;
+            _medicoSer = medico;
         }
-        /*
-        [HttpGet]
-        public IActionResult GetAll() => Ok(_citaService.ObtenerTodos());
 
-        [HttpGet("porpaciente/{pacienteId}")]
+
+        public IActionResult Index()
+        {
+
+            ViewBag.Pacientes = _pacienteSer.ObtenerTodos();
+            ViewBag.Medicos = _medicoSer.ObtenerTodos();
+            return View(_citaSer.ObtenerTodos());
+        }
+
         public IActionResult PorPaciente(int pacienteId)
         {
-            var citas = _citaService.ObtenerPorPaciente(pacienteId);
-            return citas.Count == 0 ? NotFound() : Ok(citas);
+            var citas = _citaSer.ObtenerTodos().Where(c => c.PacienteId == pacienteId).ToList();
+            ViewBag.Pacientes = _pacienteSer.ObtenerTodos();
+            ViewBag.Medicos = _medicoSer.ObtenerTodos();
+            return View(citas);
         }
-        */
-        [HttpGet("porpaciente/{pacienteId}")]
-        public IActionResult PorPaciente(int pacienteId)
-        {
-            var cita = _citaService.ObtenerPorPaciente(pacienteId);
 
-            // Si es null regresamos 404, si sí tiene datos regresamos 200 OK
-            return cita == null ? NotFound() : Ok(cita);
+        public IActionResult Agregar()
+        {
+            ViewBag.Pacientes = _pacienteSer.ObtenerTodos();
+            ViewBag.Medicos = _medicoSer.ObtenerTodos();
+            return View();
         }
+
+
+        // Formulario — POST
+        [HttpPost]
+        public IActionResult Agregar(Cita cita)
+        {
+            _citaSer.Agregar(cita);
+            return RedirectToAction("Index");
+        }
+
     }
 }
