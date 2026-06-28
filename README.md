@@ -55,8 +55,24 @@ Para validar la comunicación Cross-Origin y el manejo de parámetros dinámicos
   * `GET /dividir/{a}/{b}`: Retorna el cociente, implementando validaciones de seguridad (retorna `400 Bad Request` si se intenta dividir entre cero).
 * **Cliente Frontend:** Interfaz web interactiva construida con diseño responsive (Flexbox) y paleta de colores personalizada, que consume los endpoints mediante la API `fetch` de JavaScript sin recargar la página (Single Page Application approach).
 
-## Capturas de pantalla
+## Capturas de pantalla 
 
+### Consultas API citas
+![Diagrama del sistema]( docs/consultar.png )
+
+### Calculadora
+
+![Diagrama del sistema]( docs/restar.png )
+
+![Diagrama del sistema]( docs/suma.png )
+
+![Diagrama del sistema]( docs/multiplicar.png )
+![Diagrama del sistema]( docs/dividir.png )
+
+#### Desconectar API Cacluladora
+
+
+![Diagrama del sistema]( docs/desconectarAPI.png )
 
 
 
