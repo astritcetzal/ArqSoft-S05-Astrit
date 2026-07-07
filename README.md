@@ -55,6 +55,9 @@ Archivos JSON en `data/` dentro de cada proyecto cliente.
 - **Decorator** (`LoggingPacienteRepository`) — agrega logging con timestamp sin modificar el repositorio original
 - **Observer** (`SmsObserver`, `EmailObserver`) — notifican automáticamente al confirmar una cita sin acoplar CitaService a los canales de notificación
 
+## ⬇️ Entra al siguiente enlace para ver el diagrama UML de la arquitectura del sistema sistema:
+
+➡️ [Haz clic aquí para ver el Diagrama de Clases](docs/diagrama.md)
 
 ![Captura]( docs/pruebas_get.png )
 
