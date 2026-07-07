@@ -1,6 +1,18 @@
 # Diagrama de Clases - Citas App (Arquitectura Hexagonal & GoF)
 
+Este diagrama UML ilustra la estructura modular de Citas_App basada en la Arquitectura Hexagonal, la cual aísla la lógica central de negocio de las tecnologías externas. El diseño destaca la implementación de tres patrones de diseño (GoF) mediante inyección de dependencias:
+
+Factory (RepositoryFactory): Centraliza y decide dinámicamente si el sistema utilizará almacenamiento en memoria o en archivos JSON dependiendo del entorno de ejecución.
+
+Decorator (LoggingPacienteRepository): Envuelve los repositorios de datos para añadir funcionalidades transversales (como el registro de logs en consola) sin alterar el código original.
+
+Observer (ICitaObserver, SmsObserver, EmailObserver): Establece un sistema reactivo donde el servicio de citas notifica automáticamente a múltiples canales (SMS y Email) al confirmar una cita, manteniendo las capas completamente desacopladas.
+
+
+
 A continuación se presenta el diagrama estructural del sistema, modelado para reflejar la separación de responsabilidades y la implementación de los patrones de diseño (Factory, Decorator y Observer).
+
+
 
 ```mermaid
 classDiagram
