@@ -8,9 +8,6 @@ namespace Citas_App.Web.Controllers
 {
     public class CitaController : Controller
     {
-        //private readonly ICitaRepository _citaRepository;
-        //private readonly IPacienteRepository _pacienteRepository;
-        //private readonly IMedicoRepository _medicoRepository;
         private readonly CitaService _citaSer;
         private readonly PacienteService _pacienteSer;
         private readonly MedicoService _medicoSer;

@@ -55,6 +55,23 @@ Archivos JSON en `data/` dentro de cada proyecto cliente.
 - **Decorator** (`LoggingPacienteRepository`) — agrega logging con timestamp sin modificar el repositorio original
 - **Observer** (`SmsObserver`, `EmailObserver`) — notifican automáticamente al confirmar una cita sin acoplar CitaService a los canales de notificación
 
+
+## Code-Smells
+
+- God Class
+Al revisar el código observé que si agregaba validaciones el codigo se volveria good class, cuando se agregar una nueva cita se deben validar los datos por lo que lo ideal es crear una clase externa que pueda validar que los datos que se ingresan sean correctos por lo que lo idea es crear una nueva clase que haga la validación para crear una nueva cita. 
+SOLO PREGUNTAR DONDE SE CREAN ESAS NUEVAS CKSES 
+
+
+- Tight Coupling
+He observado que determinadas clases dependen directamente de una clase concreta, por lo que lo ideal seria crear dependencias. 
+
+
+##Refactorización
+Extract Method
+Para crear una nueva clase que se encargue de validar los datos de la cita.
+
+
 ## ⬇️ Entra al siguiente enlace para ver el diagrama UML de la arquitectura del sistema sistema:
 
 ➡️ [Haz clic aquí para ver el Diagrama de Clases](docs/diagrama.md)
