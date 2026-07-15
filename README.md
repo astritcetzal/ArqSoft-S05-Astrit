@@ -112,7 +112,7 @@ Este proyecto es de código abierto y se distribuye con fines estrictamente acad
 
 ## Clausula de IA
 
-Declaro el uso de Inteligencia Artificial de manera asistida para entender mejor los conceptos y como apoyo para comprobar. 
+Decraro el uso de inteligencia artificial de manera asistida para estructurar mejor la idea de la deuda técnica, asi como de la implementación de los code-smell 
 
 
 ---
