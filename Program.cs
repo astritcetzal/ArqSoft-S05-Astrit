@@ -19,31 +19,32 @@ var csvCitas = Path.Combine(dataFolder, "citas.csv");
 */
 // Ruta para SQLite (un solo archivo .db para las 3 tablas)
 var sqlitePath = Path.Combine(dataFolder, "citasapp.db");
-
+if (!Directory.Exists(Path.GetDirectoryName(sqlitePath)))
+{
+    Directory.CreateDirectory(Path.GetDirectoryName(sqlitePath)!);
+}
 
 // ── 2. Elige tus Adapters ─────────────────────────────────────────────────────
 // Descomenta el bloque que quieras y comenta los otros dos.
 // ¡Las interfaces (Ports) no cambian!
 
 // ▶ Bloque A — JSON (como estaba antes)
-
+/*
 builder.Services.AddSingleton<IPacienteRepository, JsonPacienteRepository>();
 builder.Services.AddSingleton<IMedicoRepository,   JsonMedicoRepository>();
 builder.Services.AddSingleton<ICitaRepository,     JsonCitaRepository>();
 
-
+*/
 // ▶ Bloque B — CSV  ← activo ahora
 /*
 builder.Services.AddSingleton<IPacienteRepository>(sp => (IPacienteRepository)new CsvPacienteRepository(csvPacientes));
 builder.Services.AddSingleton<IMedicoRepository>(sp => (IMedicoRepository)new CsvMedicoRepository(csvMedicos));
 builder.Services.AddSingleton<ICitaRepository>(sp => (ICitaRepository)new CsvCitaRepository(csvCitas));
 */
-// ▶ Bloque C — SQLite
-/*
-builder.Services.AddSingleton<IPacienteRepository>(_ => new SqlitePacienteRepository(sqlitePath));
-builder.Services.AddSingleton<IMedicoRepository>(_ => new SqliteMedicoRepository(sqlitePath));
-builder.Services.AddSingleton<ICitaRepository>(_ => new SqliteCitaRepository(sqlitePath));
-*/
+// ▶ Bloque C — SQLite Corregido
+builder.Services.AddScoped<IPacienteRepository>(_ => new SqlitePacienteRepository(sqlitePath));
+builder.Services.AddScoped<IMedicoRepository>(_ => new SqliteMedicoRepository(sqlitePath));
+builder.Services.AddScoped<ICitaRepository>(_ => new SqliteCitaRepository(sqlitePath));
 
 
 // ── 3. Servicios de aplicación (no cambian con el Adapter) ───────────────────
