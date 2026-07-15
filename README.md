@@ -56,23 +56,28 @@ Archivos JSON en `data/` dentro de cada proyecto cliente.
 - **Observer** (`SmsObserver`, `EmailObserver`) — notifican automáticamente al confirmar una cita sin acoplar CitaService a los canales de notificación
 
 
-## Code-Smells
+## Deuda técnica
 
-- God Class
-Al revisar el código observé que si agregaba validaciones el codigo se volveria good class, cuando se agregar una nueva cita se deben validar los datos por lo que lo ideal es crear una clase externa que pueda validar que los datos que se ingresan sean correctos por lo que lo idea es crear una nueva clase que haga la validación para crear una nueva cita. 
-SOLO PREGUNTAR DONDE SE CREAN ESAS NUEVAS CKSES 
+### ¿Qué es?
 
+Acualmente la persistencia de dtos CitasApp se basa en archivos JSON locales gestionados por repositorios de insfraestructura. Se trata de una implementación de persistencia "en memoria/archivo" que carece de las capacidades transaccionales, de integridad relacional y de escalabilidad propias de un motor de bases de datos relacional.
 
-- Tight Coupling
-He observado que determinadas clases dependen directamente de una clase concreta, por lo que lo ideal seria crear dependencias. 
+### ¿Por qué existe? 
 
+Es una decisión consciente adoptada en las fases iniciales del proyecto para maximimizar la velocidad dedesarrollo, simplificar la portabilidad y evitar la sobrecarga de configurar un servidor de bases de datos durante el dieño de la arquitectura hexagonal. Se prefirió validad la lógica de negocio antes que la infrastrctura de datos. 
 
-## Refactorización
-Extract Method
-Para crear una nueva clase que se encargue de validar los datos de la cita.
+### Costo de no pagarla:
 
-## Deuda Técnica
+Si el sistema crece en número de usuario o citas, el uso de archivos JSON presentarpa graves problemas de consistencia y rendimeiento:
+- **Riesgo de corrupción**: Ante una escritura simultánea (dos usaurio  agregando cita al mismo tiempo), el archivo JSON podria corromperse o perder infromación.
+- **Escalabilidad**: Al no tener un motor de consultas (SQL), el tiempo de lecutura/escritura crecerá de forma linear o peor conforma el archivo aumente de tamaño, haciendo que el sistema sea lento e ineficiente.
+- **Integridad**: No eciste restricciones que aseguren que un paciente o médico realmente exiarta antes de asignar una cita.
+###  Propuesta de solución:
 
+La solución consiste en migran la capa de instraestructura a un motor SQLite mediante la implementación de Entity Framework Core (EF Core)
+
+- **Técnica de refactorización**: Aplicar el patrón Repository Pattern creadno un nuevo `SQLiteCitaRepository` que implemente las interfaces existentes.
+- **Ventaja**: Gracias a la arquitectura hexagonal, el cambio será transperante; solo se requiere actualizar el registro de servicios en `Program.cs`, sin necesidad de modificar el CitaService ni los controladores preservando intacta la lógica de negocio.
 
 ## ⬇️ Entra al siguiente enlace para ver el diagrama UML de la arquitectura del sistema sistema:
 
