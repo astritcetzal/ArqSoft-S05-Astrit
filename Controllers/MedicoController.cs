@@ -37,6 +37,12 @@ namespace Citas_App.Web.Controllers
             _medicoSer.Agregar(medico);
             return RedirectToAction("Index");
         }
+
+        public IActionResult Eliminar(int id)
+        {
+            _medicoSer.Eliminar(id);
+            return RedirectToAction("Index");
+        }
     }
 
 }

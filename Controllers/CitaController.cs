@@ -1,6 +1,7 @@
 ﻿using Citas_App.Application.Interfaces;
 using Citas_App.Application.Services;
 using Citas_App.Domain.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Citas_App.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -56,6 +57,12 @@ namespace Citas_App.Web.Controllers
             }
             return RedirectToAction("Index");
         }
-
+        //eliminar
+        [Authorize]
+        public IActionResult Eliminar(int id)
+        {
+            _citaSer.Eliminar(id);
+            return RedirectToAction("Index");
+        }
     }
 }
