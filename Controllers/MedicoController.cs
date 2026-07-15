@@ -1,4 +1,5 @@
-﻿using Citas_App.Application.Services;
+﻿using Citas_App.Application.Interfaces;
+using Citas_App.Application.Services;
 using Citas_App.Domain.Interfaces;
 using Citas_App.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -7,9 +8,9 @@ namespace Citas_App.Web.Controllers
 {
     public class MedicoController : Controller
     {
-        private readonly MedicoService _medicoSer;
+        private readonly IMedicoService _medicoSer;
        
-        public MedicoController(MedicoService medico)
+        public MedicoController(IMedicoService medico)
         {
             _medicoSer = medico;
             

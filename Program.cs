@@ -2,6 +2,7 @@ using Citas_App.Domain.Interfaces;
 using Citas_App.Infrastructure.Repositories;
 using Citas_App.Domain.Models;
 using Citas_App.Application.Services;
+using Citas_App.Application.Interfaces;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -46,9 +47,9 @@ builder.Services.AddSingleton<ICitaRepository>(_ => new SqliteCitaRepository(sql
 
 
 // ── 3. Servicios de aplicación (no cambian con el Adapter) ───────────────────
-builder.Services.AddScoped<PacienteService>();
-builder.Services.AddScoped<MedicoService>();
-builder.Services.AddScoped<CitaService>();
+builder.Services.AddScoped<IPacienteService, PacienteService>();
+builder.Services.AddScoped<IMedicoService, MedicoService>();
+builder.Services.AddScoped<ICitaService, CitaService>();
 
 // ── 4. MVC ────────────────────────────────────────────────────────────────────
 builder.Services.AddControllersWithViews();

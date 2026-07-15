@@ -67,9 +67,11 @@ SOLO PREGUNTAR DONDE SE CREAN ESAS NUEVAS CKSES
 He observado que determinadas clases dependen directamente de una clase concreta, por lo que lo ideal seria crear dependencias. 
 
 
-##Refactorización
+## Refactorización
 Extract Method
 Para crear una nueva clase que se encargue de validar los datos de la cita.
+
+## Deuda Técnica
 
 
 ## ⬇️ Entra al siguiente enlace para ver el diagrama UML de la arquitectura del sistema sistema:

@@ -1,4 +1,5 @@
-﻿using Citas_App.Application.Services;
+﻿using Citas_App.Application.Interfaces;
+using Citas_App.Application.Services;
 using Citas_App.Domain.Interfaces;
 using Citas_App.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -8,12 +9,12 @@ namespace Citas_App.Web.Controllers
 {
     public class CitaController : Controller
     {
-        private readonly CitaService _citaSer;
-        private readonly PacienteService _pacienteSer;
-        private readonly MedicoService _medicoSer;
+        private readonly ICitaService _citaSer;
+        private readonly IPacienteService _pacienteSer;
+        private readonly IMedicoService _medicoSer;
 
 
-        public CitaController(CitaService cita, PacienteService paciente, MedicoService medico)
+        public CitaController(ICitaService cita, IPacienteService paciente, IMedicoService medico)
         {
             _citaSer = cita;
             _pacienteSer = paciente;
@@ -49,7 +50,10 @@ namespace Citas_App.Web.Controllers
         [HttpPost]
         public IActionResult Agregar(Cita cita)
         {
-            _citaSer.Agregar(cita);
+            bool existe = _citaSer.Agregar(cita);
+            if (!existe) { 
+            return BadRequest("No se pudo agregar la cita. Verifique los datos ingresados.");
+            }
             return RedirectToAction("Index");
         }
 

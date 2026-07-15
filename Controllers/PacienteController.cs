@@ -1,4 +1,5 @@
-﻿using Citas_App.Application.Services;
+﻿using Citas_App.Application.Interfaces;
+using Citas_App.Application.Services;
 using Citas_App.Domain.Interfaces;
 using Citas_App.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -7,9 +8,9 @@ namespace Citas_App.Web.Controllers
     public class PacienteController : Controller
     {
         
-        private readonly PacienteService _pacienteSer;
+        private readonly IPacienteService _pacienteSer;
         
-        public PacienteController(PacienteService paciente)
+        public PacienteController(IPacienteService paciente)
         {
             _pacienteSer = paciente;
         }

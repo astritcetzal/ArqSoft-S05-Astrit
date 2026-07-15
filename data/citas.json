@@ -61,5 +61,14 @@
     "Hora": "04:27:00",
     "Motivo": "Dolor de espalda",
     "Estado": "Confirmada"
+  },
+  {
+    "Id": 8,
+    "PacienteId": 2,
+    "MedicoId": 2,
+    "Fecha": "2026-08-06",
+    "Hora": "18:29:00",
+    "Motivo": "dolor de rodillas",
+    "Estado": "Pendiente"
   }
 ]
