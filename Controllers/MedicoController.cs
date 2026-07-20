@@ -2,10 +2,12 @@
 using Citas_App.Application.Services;
 using Citas_App.Domain.Interfaces;
 using Citas_App.Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 namespace Citas_App.Web.Controllers
 {
+    [Authorize(Roles="Admin, Paciente")]
     public class MedicoController : Controller
     {
         private readonly IMedicoService _medicoSer;
@@ -24,7 +26,8 @@ namespace Citas_App.Web.Controllers
             var medico = _medicoSer.ObtenerPorId(id);
             return medico == null ? NotFound() : View(medico);
         }
-        
+
+        [Authorize(Roles="Admin")]
         public IActionResult Agregar()
         {
             return View();
@@ -37,7 +40,7 @@ namespace Citas_App.Web.Controllers
             _medicoSer.Agregar(medico);
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles="Admin")]
         public IActionResult Eliminar(int id)
         {
             _medicoSer.Eliminar(id);

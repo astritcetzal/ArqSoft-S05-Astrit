@@ -20,7 +20,7 @@ namespace Citas_App.Web.ViewModel
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirmar contraseña")]
-        [Compare("Password", ErrorMessage ="La contraseña y la confirmaciónno coinciden.")]
+        [Compare("Password", ErrorMessage ="La contraseña y la confirmación no coinciden.")]
         public string ConfirmPassword { get; set; } = string.Empty;
 
         [Required]

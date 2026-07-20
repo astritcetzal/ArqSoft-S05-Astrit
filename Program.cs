@@ -1,15 +1,16 @@
+using Citas_App.Application.Interfaces;
+using Citas_App.Application.Services;
 using Citas_App.Domain.Interfaces;
 using Citas_App.Infrastructure.Repositories;
-using Citas_App.Domain.Models;
-using Citas_App.Application.Services;
-using Citas_App.Application.Interfaces;
-
-
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Citas_App.Infrastructure.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // ── 1. Carpeta de datos ───────────────────────────────────────────────────────
 var dataFolder = Path.Combine(builder.Environment.ContentRootPath, "data");
 Directory.CreateDirectory(dataFolder);
+//var appEnv = builder
 
 // Rutas para CSV
 /*
@@ -46,7 +47,6 @@ builder.Services.AddScoped<IPacienteRepository>(_ => new SqlitePacienteRepositor
 builder.Services.AddScoped<IMedicoRepository>(_ => new SqliteMedicoRepository(sqlitePath));
 builder.Services.AddScoped<ICitaRepository>(_ => new SqliteCitaRepository(sqlitePath));
 
-
 // ── 3. Servicios de aplicación (no cambian con el Adapter) ───────────────────
 builder.Services.AddScoped<IPacienteService, PacienteService>();
 builder.Services.AddScoped<IMedicoService, MedicoService>();
@@ -54,6 +54,32 @@ builder.Services.AddScoped<ICitaService, CitaService>();
 
 // ── 4. MVC ────────────────────────────────────────────────────────────────────
 builder.Services.AddControllersWithViews();
+
+// DATABASES & IDENTITY INFRASTRUCTURE (SQLite Setup)
+
+// Inyectamos el DbContext indicándole que use SQLite y dónde guardar las migraciones
+builder.Services.AddDbContext<CitasDbContext>(options =>
+    options.UseSqlite($"Data Source={sqlitePath}",
+        b => b.MigrationsAssembly("Citas_App.Infrastructure")
+    )
+);
+
+// Configuración de Identity (Esta es igual a la de tu profe)
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+{
+    options.Password.RequireDigit = false;
+    options.Password.RequiredLength = 6;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+})
+    .AddEntityFrameworkStores<CitasDbContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Cuenta/Login"; // Asegúrate de que apunte a tu controlador Cuenta
+    options.AccessDeniedPath = "/Cuenta/AccesoDenegado";
+});
 
 var app = builder.Build();
 
@@ -66,10 +92,28 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+//roles
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-app.Run();
+    // Los 3 roles de nuestro sistema
+    string[] roles = { "Admin", "Medico", "Paciente" };
+
+    foreach (var rol in roles)
+    {
+        // Si el rol no existe en la base de datos, lo crea
+        if (!await roleManager.RoleExistsAsync(rol))
+        {
+            await roleManager.CreateAsync(new IdentityRole(rol));
+        }
+    }
+}
+
+app.Run(); 
