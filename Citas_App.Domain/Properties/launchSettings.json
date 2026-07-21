@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "Citas_App.Domain": {
+      "commandName": "Project"
+    },
+    "Perfil 1": {
+      "commandName": "Project"
+    },
+    "Perfil 2": {
+      "commandName": "Executable"
+    },
+    "Perfil 3": {
+      "commandName": "Project"
+    }
+  }
+}

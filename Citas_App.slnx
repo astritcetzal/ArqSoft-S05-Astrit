@@ -1,9 +1,9 @@
 <Solution>
   <Folder Name="/Elementos de la solución/" />
-  <Project Path="../Citas_App.Api/Citas_App.Api.csproj" Id="62e67c1e-de99-4a5c-8335-567a83a77128" />
-  <Project Path="../Citas_App.Application/Citas_App.Application.csproj" Id="2110d4b8-7a91-4b4b-b9d4-1f17a9a5d86d" />
-  <Project Path="../Citas_App.Domain/Citas_App.Domain.csproj" Id="921f5443-de29-4200-9eed-47a204a3126b" />
-  <Project Path="../Citas_App.Infrastructure/Citas_App.Infrastructure.csproj" Id="0c7656a5-d394-4067-bddc-cddb9877be76" />
-  <Project Path="../Citas_App.xUnit/Citas_App.xUnit.csproj" Id="007b3ca6-d6bf-4108-9603-818d44c4e1e9" />
-  <Project Path="Citas_App.Web.csproj" />
+  <Project Path="Citas_App.Api/Citas_App.Api.csproj" />
+  <Project Path="Citas_App.Application/Citas_App.Application.csproj" />
+  <Project Path="Citas_App.Domain/Citas_App.Domain.csproj" />
+  <Project Path="Citas_App.Infrastructure/Citas_App.Infrastructure.csproj" />
+  <Project Path="Citas_App.xUnit/Citas_App.xUnit.csproj" />
+  <Project Path="Citas_App/Citas_App.Web.csproj" />
 </Solution>
