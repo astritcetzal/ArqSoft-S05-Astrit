@@ -75,23 +75,67 @@ namespace Citas_App.Web.Controllers
             return View(citas);
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Admin, Paciente")] // Los médicos no agendan citas
         public IActionResult Agregar()
         {
-            ViewBag.Pacientes = _pacienteSer.ObtenerTodos();
+            // Los médicos siempre se muestran todos para que el paciente elija con quién ir
             ViewBag.Medicos = _medicoSer.ObtenerTodos();
+
+            if (User.IsInRole("Admin"))
+            {
+                // El administrador ve a todos los pacientes
+                ViewBag.Pacientes = _pacienteSer.ObtenerTodos();
+            }
+            else if (User.IsInRole("Paciente"))
+            {
+                // El paciente solo se ve a sí mismo
+                string correoActual = User.Identity?.Name ?? "";
+                var miPerfil = _pacienteSer.ObtenerTodos().FirstOrDefault(p => p.Email == correoActual);
+
+                if (miPerfil != null)
+                {
+                    // Le mandamos una lista que solo contiene su propio perfil
+                    ViewBag.Pacientes = new List<Paciente> { miPerfil };
+                }
+                else
+                {
+                    ViewBag.Pacientes = new List<Paciente>();
+                }
+            }
+
             return View();
         }
 
-
         // Formulario — POST
         [HttpPost]
+        [Authorize(Roles = "Admin, Paciente")]
         public IActionResult Agregar(Cita cita)
         {
-            bool existe = _citaSer.Agregar(cita);
-            if (!existe) { 
-            return BadRequest("No se pudo agregar la cita. Verifique los datos ingresados.");
+            // SEGURIDAD: Si es paciente, forzamos su ID sin importar lo que mande el formulario
+            if (User.IsInRole("Paciente"))
+            {
+                string correoActual = User.Identity?.Name ?? "";
+                var miPerfil = _pacienteSer.ObtenerTodos().FirstOrDefault(p => p.Email == correoActual);
+
+                if (miPerfil != null)
+                {
+                    cita.PacienteId = miPerfil.Id;
+                }
             }
-            return RedirectToAction("Index");
+
+            // Aquí abajo va tu código normal para guardar
+            if (ModelState.IsValid)
+            {
+                _citaSer.Agregar(cita);
+                return RedirectToAction("Index");
+            }
+
+            // Si hay error, recargamos las listas igual que en el GET
+            ViewBag.Medicos = _medicoSer.ObtenerTodos();
+            ViewBag.Pacientes = User.IsInRole("Admin") ? _pacienteSer.ObtenerTodos() : new List<Paciente>();
+
+            return View(cita);
         }
         //eliminar
         [Authorize (Roles = "Admin")]

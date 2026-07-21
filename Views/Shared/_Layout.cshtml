@@ -24,8 +24,8 @@
                     <ul class="navbar-nav flex-grow-1">
                         @if (SignInManager.IsSignedIn(User))
                         {
-                            // 🔒 Solo Admin y Médico ven estos catálogos
-                            @if (User.IsInRole("Admin") || User.IsInRole("Medico"))
+                            // 🔒 AHORA SOLO EL ADMIN VE ESTO
+                            @if (User.IsInRole("Admin"))
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-controller="Paciente" asp-action="Index">Pacientes</a>
@@ -35,7 +35,7 @@
                                 </li>
                             }
         
-                            // 📅 Todos los usuarios logueados ven la Agenda (pero adentro filtraremos los datos)
+                            // 📅 TODOS ven la agenda
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-controller="Cita" asp-action="Index">Agenda</a>
                             </li>
