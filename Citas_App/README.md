@@ -18,6 +18,7 @@ Hexagonal (Ports & Adapters) dividida en cinco proyectos:
 - **CitasApp.Infrastructure** — repositorios JSON y en memoria
 - **CitasApp.Web** — cliente MVC para navegador
 - **CitasApp.Api** — cliente API REST para cualquier dispositivo
+- **CitasApp.xUnit** Capa dedicada a las pruebas unitarias automáticas.
 
 ## Flujo de dependencias
 ```bash
@@ -85,6 +86,23 @@ La solución consiste en migran la capa de instraestructura a un motor SQLite me
 ![Captura]( docs/pruebas_get.png )
 
 ![Captura]( docs/Sms_Email.png )
+
+
+## Proceso de Desarrollo y Resolución de Retos
+
+Durante la construcción e integración de este sistema, se llevaron a cabo los siguientes hitos de ingeniería:
+
+1. **Migración a SQLite:** Transición desde almacenamiento plano (JSON/CSV) hacia un motor relacional robusto con SQLite, centralizando la persistencia mediante Entity Framework Core y gestionando la seguridad con ASP.NET Core Identity.
+2. **Implementación de Patrones:** 
+   * **Factory Method & Decorator:** Creación y envoltorio de repositorios para auditoría y registro de actividad (*Logging*).
+   * **Observer:** Notificaciones desacopladas para eventos de citas.
+3. **Pruebas Unitarias y Fakes:** Desarrollo de adaptadores en memoria (*Fakes*) para simular repositorios sin comprometer la base de datos real durante la ejecución de pruebas con `xUnit`.
+4. **Automatización e Integración Continua (CI/CD):** 
+   * Configuración de un pipeline automatizado con **GitHub Actions** (`ci.yml`).
+   * Resolución de la estructura de directorios en la raíz del repositorio para asegurar la correcta restauración de dependencias (`dotnet restore`), compilación (`dotnet build`) y ejecución exitosa de pruebas (`dotnet test`) en entornos basados en Linux (Ubuntu).
+
+---
+
 
 ## Requisitos
 - .NET 10.0

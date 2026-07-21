@@ -25,8 +25,8 @@ builder.Services.AddScoped<ICitaRepository>(_ => new SqliteCitaRepository(sqlite
 
 // ── 3. Observers ──
 // Descomenta esto si tienes creados el SmsObserver y EmailObserver
-// builder.Services.AddScoped<ICitaObserver, SmsObserver>();
-// builder.Services.AddScoped<ICitaObserver, EmailObserver>();
+builder.Services.AddScoped<ICitaObserver, SmsObserver>();
+builder.Services.AddScoped<ICitaObserver, EmailObserver>();
 
 // ── 4. Servicios de aplicación ──
 builder.Services.AddScoped<PacienteService>();
