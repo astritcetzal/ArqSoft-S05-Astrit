@@ -1,15 +1,11 @@
 name: CI
-on:
-  push:
-    branches: [ "main", "master", "develop" ]
-  pull_request:
-    branches: [ "main", "master", "develop" ]
+on: [push]
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       - name: Configurar .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -19,5 +15,4 @@ jobs:
       - name: Compilar
         run: dotnet build --no-restore
       - name: Correr pruebas
-        run: dotnet test --no-build --verbosity normal
-            
+        run: dotnet test --no-build
