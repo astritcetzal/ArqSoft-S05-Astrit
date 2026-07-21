@@ -8,7 +8,6 @@
 - **Profesor:** Jorge Javier Pedrozo Romero
 
 -----
-
 App de citas médicas construida con ASP.NET Core (.NET 10).
 
 ## Arquitectura
