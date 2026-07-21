@@ -1,7 +1,7 @@
 ﻿using Citas_App.Domain.Interfaces;
 using Citas_App.Domain.Models;
 
-namespace Citas_App.Infrastructure.Repositories
+namespace Citas_App.Infrastructure.Observers
 {
     // cada observer tiene su propia personalidad
     public class SmsObserver: ICitaObserver

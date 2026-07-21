@@ -1,6 +1,6 @@
 ﻿using Citas_App.Domain.Models;
 using Citas_App.Domain.Interfaces;
-namespace Citas_App.Infrastructure.Repositories
+namespace Citas_App.Infrastructure.Observers
 {
     public class EmailObserver: ICitaObserver
     {
