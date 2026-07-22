@@ -6,6 +6,7 @@ namespace Citas_App.Infrastructure.Observers
     // cada observer tiene su propia personalidad
     public class SmsObserver: ICitaObserver
     {
-        public void OnCitaConfirmada(Cita cita) => Console.WriteLine($" [SMS] Recordatorio enviado al paciente {cita.PacienteId}, cita el {cita.Fecha}  a las {cita.Hora}");
+        public void OnCitaConfirmada(Cita cita) => Console.WriteLine($" [SMS] Recordatorio enviado al paciente {cita.PacienteId}, " +
+            $"cita el {cita.Fecha}  a las {cita.Hora}");
     }
 }
