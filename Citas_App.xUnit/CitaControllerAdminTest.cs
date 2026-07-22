@@ -1,55 +1,148 @@
-﻿using Citas_App.Domain.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using Citas_App.Application.Services;
+using Citas_App.Domain.Interfaces;
 using Citas_App.Domain.Models;
+using Citas_App.Web.Controllers;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Xunit;
 
-public class CitaRepositoryFake : ICitaRepository
+namespace Citas_App.xUnit // Ajustado para quitar la advertencia azul (IDE0130)
 {
-    private readonly List<Cita> _citas;
+    // --------------------------------------------------------------------
+    // FAKES CORREGIDOS (Regresamos a List<T> como tu los tenías)
+    // --------------------------------------------------------------------
 
-    public CitaRepositoryFake(List<Cita> citas) => _citas = citas;
+    public class CitaRepositoryFake : ICitaRepository
+    {
+        private readonly List<Cita> _citas;
+        public CitaRepositoryFake(List<Cita> citas) => _citas = citas;
 
-    public List<Cita> ObtenerTodos() => _citas;
+        // Usamos List<Cita> exactamente como lo pide tu interfaz
+        public List<Cita> ObtenerTodos() => _citas;
+        public List<Cita> ObtenerPorPaciente(int pacienteId) => _citas.Where(c => c.PacienteId == pacienteId).ToList();
 
-    public Cita? ObtenerPorPaciente(int pacienteId)
-        => _citas.FirstOrDefault(c => c.PacienteId == pacienteId);
+        public void Agregar(Cita cita) => throw new NotImplementedException();
+        public void Eliminar(int id) => throw new NotImplementedException();
+        public Cita ObtenerPorId(int id) => throw new NotImplementedException();
+        public void ConfirmarCita(int id) => throw new NotImplementedException();
 
-    public void Agregar(Cita cita) => throw new NotImplementedException();
+        Cita? ICitaRepository.ObtenerPorPaciente(int pacienteId)
+        {
+            throw new NotImplementedException();
+        }
+    }
 
-    public Cita? ObtenerPorId(int id) => _citas.FirstOrDefault(c => c.Id == id);
+    public class PacienteRepositoryFake : IPacienteRepository
+    {
+        private readonly List<Paciente> _pacientes;
+        public PacienteRepositoryFake(List<Paciente> pacientes) => _pacientes = pacientes;
 
-    // MÉTODOS REQUERIDOS POR LA INTERFAZ:
-    public void Eliminar(int id) => throw new NotImplementedException();
+        public List<Paciente> ObtenerTodos() => _pacientes;
+        public Paciente ObtenerPorId(int id) => _pacientes.FirstOrDefault(p => p.Id == id);
 
-    public void ConfirmarCita(int id) => throw new NotImplementedException();
-}
+        public void Agregar(Paciente paciente) => throw new NotImplementedException();
+        public void Eliminar(int id) => throw new NotImplementedException();
+    }
 
-public class PacienteRepositoryFake : IPacienteRepository
-{
-    private readonly List<Paciente> _pacientes;
+    public class MedicoRepositoryFake : IMedicoRepository
+    {
+        private readonly List<Medico> _medicos;
+        public MedicoRepositoryFake(List<Medico> medicos) => _medicos = medicos;
 
-    public PacienteRepositoryFake(List<Paciente> pacientes) => _pacientes = pacientes;
+        public List<Medico> ObtenerTodos() => _medicos;
+        public Medico ObtenerPorId(int id) => _medicos.FirstOrDefault(m => m.Id == id);
 
-    public List<Paciente> ObtenerTodos() => _pacientes;
+        public void Agregar(Medico medico) => throw new NotImplementedException();
+        public void Eliminar(int id) => throw new NotImplementedException();
+    }
 
-    public Paciente? ObtenerPorId(int id) => _pacientes.FirstOrDefault(p => p.Id == id);
+    // --------------------------------------------------------------------
+    // PRUEBAS
+    // --------------------------------------------------------------------
 
-    public void Agregar(Paciente paciente) => throw new NotImplementedException();
+    public class CitaControllerAdminTests
+    {
+        private CitaController CrearControllerConDatosDePrueba(out List<Cita> citasEsperadas)
+        {
+            citasEsperadas = new List<Cita>
+            {
+                new Cita { Id = 1, PacienteId = 10, Estado = "Pendiente" },
+                new Cita { Id = 2, PacienteId = 20, Estado = "Confirmada" },
+                new Cita { Id = 3, PacienteId = 10, Estado = "Pendiente" }
+            };
 
-    // MÉTODO REQUERIDO POR LA INTERFAZ:
-    public void Eliminar(int id) => throw new NotImplementedException();
-}
+            var pacientes = new List<Paciente>
+            {
+                new Paciente { Id = 10, Email = "paciente1@correo.com" },
+                new Paciente { Id = 20, Email = "paciente2@correo.com" }
+            };
 
-public class MedicoRepositoryFake : IMedicoRepository
-{
-    private readonly List<Medico> _medicos;
+            var medicos = new List<Medico>
+            {
+                new Medico { Id = 1, Nombre = "Dr. Pérez" }
+            };
 
-    public MedicoRepositoryFake(List<Medico> medicos) => _medicos = medicos;
+            // Pasamos los Observers vacíos para cumplir con tu arquitectura
+            var observersVacios = new List<ICitaObserver>();
+            var citaService = new CitaService(new CitaRepositoryFake(citasEsperadas), observersVacios);
 
-    public List<Medico> ObtenerTodos() => _medicos;
+            var pacienteService = new PacienteService(new PacienteRepositoryFake(pacientes));
+            var medicoService = new MedicoService(new MedicoRepositoryFake(medicos));
 
-    public Medico? ObtenerPorId(int id) => _medicos.FirstOrDefault(m => m.Id == id);
+            var controller = new CitaController(citaService, pacienteService, medicoService);
 
-    public void Agregar(Medico medico) => throw new NotImplementedException();
+            // Simular usuario admin logueado
+            var claims = new List<Claim> { new Claim(ClaimTypes.Name, "jorge@admin.com") };
+            var identity = new ClaimsIdentity(claims, "TestAuth");
+            var principal = new ClaimsPrincipal(identity);
 
-    // MÉTODO REQUERIDO POR LA INTERFAZ:
-    public void Eliminar(int id) => throw new NotImplementedException();
+            controller.ControllerContext = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext { User = principal }
+            };
+
+            return controller;
+        }
+
+        [Fact]
+        public void Index_ConCuentaAdmin_RegresaTodasLasCitasSinFiltrar()
+        {
+            var controller = CrearControllerConDatosDePrueba(out var citasEsperadas);
+            var resultado = controller.Index() as ViewResult;
+
+            // Regresamos a List<Cita>
+            var modelo = resultado?.Model as List<Cita>;
+
+            Assert.NotNull(modelo);
+            Assert.Equal(citasEsperadas.Count, modelo.Count);
+        }
+
+        [Fact]
+        public void Index_ConCuentaAdmin_IncluyeCitasDeMasDeUnPaciente()
+        {
+            var controller = CrearControllerConDatosDePrueba(out _);
+            var resultado = controller.Index() as ViewResult;
+
+            // Regresamos a List<Cita>
+            var modelo = resultado?.Model as List<Cita>;
+
+            Assert.NotNull(modelo);
+            var pacientesDistintos = modelo.Select(c => c.PacienteId).Distinct().Count();
+            Assert.True(pacientesDistintos > 1);
+        }
+
+        [Fact]
+        public void Index_ConCuentaAdmin_CargaCatalogosDePacientesYMedicosEnViewBag()
+        {
+            var controller = CrearControllerConDatosDePrueba(out _);
+            controller.Index();
+
+            Assert.NotNull(controller.ViewBag.Pacientes);
+            Assert.NotNull(controller.ViewBag.Medicos);
+        }
+    }
 }
