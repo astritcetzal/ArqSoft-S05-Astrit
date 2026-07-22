@@ -103,7 +103,6 @@ Durante la construcción e integración de este sistema, se llevaron a cabo los 
 
 ---
 
-
 ## Requisitos
 - .NET 10.0
 - Visual Studio 2022
@@ -112,6 +111,10 @@ Durante la construcción e integración de este sistema, se llevaron a cabo los 
 - `main` — estado evaluable con persistencia JSON en un solo proyecto
 - `hexagonal` — arquitectura hexagonal multi-proyecto con capa de aplicación
 - `Api` — API REST expuesta como segundo cliente del núcleo de negocio
+- `GOF` - Implementación de patrones GOF
+- `UML` - Incluye los diagras como código
+- `CodeSmells` - Se identificaron los code smell y se plantéa la deuda técnica
+- `CI/CD` - Configuración de un pipeline automatizado con GitHub Actions
 
 
 ## Contacto
