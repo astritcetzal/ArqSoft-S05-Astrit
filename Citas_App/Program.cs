@@ -11,7 +11,6 @@ var builder = WebApplication.CreateBuilder(args);
 var dataFolder = Path.Combine(builder.Environment.ContentRootPath, "data");
 Directory.CreateDirectory(dataFolder);
 //var appEnv = builder
-
 // Rutas para CSV
 /*
 var csvPacientes = Path.Combine(dataFolder, "pacientes.csv");
@@ -24,7 +23,6 @@ if (!Directory.Exists(Path.GetDirectoryName(sqlitePath)))
 {
     Directory.CreateDirectory(Path.GetDirectoryName(sqlitePath)!);
 }
-
 // ── 2. Elige tus Adapters ─────────────────────────────────────────────────────
 // Descomenta el bloque que quieras y comenta los otros dos.
 // ¡Las interfaces (Ports) no cambian!
