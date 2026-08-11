@@ -1,0 +1,21 @@
+﻿@model List<Citas_App.Domain.Models.Paciente>
+@using Citas_App.Domain.Models
+<h1>Pacientes registrados</h1>
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Teléfono</th>
+        <th></th>
+    </tr>
+    @foreach (var p in Model)
+    {
+        <tr>
+            <td>@p.Nombre @p.Apellido</td>
+            <td>@p.Email</td>
+            <td>@p.Telefono</td>
+            <td><a asp-action="Detalle" asp-route-id="@p.Id">Ver detalle</a></td>
+        </tr>
+    }
+</table>
+<a asp-action="Agregar" class="btn-agregar-paciente">+ Agregar paciente</a>

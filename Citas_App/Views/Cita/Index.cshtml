@@ -1,0 +1,52 @@
+﻿@model List<Citas_App.Domain.Models.Cita>
+
+@{
+    var pacientes = ViewBag.Pacientes as List<Paciente>;
+    var medicos= ViewBag.Medicos as List<Medico>;
+
+}
+
+
+   <h1>Agenda de citas</h1>
+   <table>
+       <tr>
+           <th>Fecha</th>
+           <th>Hora</th>
+           <th>Paciente</th>
+           <th>Médico</th>
+           <th>Motivo</th>
+           <th>Estado</th>
+           <th>Acciones</th>
+       </tr>
+   
+
+    @foreach (var c in Model)
+{
+    var paciente = pacientes?.FirstOrDefault(p => p.Id == c.PacienteId);
+    var medico = medicos?.FirstOrDefault(m => m.Id == c.MedicoId);
+
+    <tr>
+        <td>@c.Fecha.ToString("dd/MM/yyyy")</td>
+        <td>@c.Hora.ToString("HH:mm")</td>
+        <td>@(paciente != null ? $"{paciente.Nombre} {paciente.Apellido}" : "-")</td>
+        <td>@(medico != null ? $"{medico.Nombre} {medico.Apellido}" : "-")</td>
+        <td>@c.Motivo</td>
+        <td>@c.Estado</td>
+            <td><a asp-controller="Cita" asp-action="PorPaciente" asp-route-pacienteId="@c.PacienteId"> Por paciente</a></td>
+        
+    </tr>
+
+        
+
+}
+</table>
+
+
+<hr />
+
+
+
+@if (User.IsInRole("Admin") || User.IsInRole("Paciente"))
+{
+    <a asp-action="Agregar" class="btn btn-cita">+ Agregar cita</a>
+}

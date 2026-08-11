@@ -1,5 +1,8 @@
 <Solution>
-  <Project Path="Citas_App.csproj">
-    <Build Solution="Debug|*" Project="false" />
-  </Project>
+  <Project Path="Citas_App.Api/Citas_App.Api.csproj" />
+  <Project Path="Citas_App.Application/Citas_App.Application.csproj" />
+  <Project Path="Citas_App.Domain/Citas_App.Domain.csproj" />
+  <Project Path="Citas_App.Infrastructure/Citas_App.Infrastructure.csproj" />
+  <Project Path="Citas_App.xUnit/Citas_App.xUnit.csproj" />
+  <Project Path="Citas_App/Citas_App.Web.csproj" />
 </Solution>

@@ -1,0 +1,31 @@
+﻿@model Citas_App.Domain.Models.Paciente
+@using Citas_App.Domain.Models
+<div class="contenedor-formulario">
+    <h1>Agregar paciente</h1>
+    <form asp-action="Agregar" method="post" >
+        
+        <div class="paciente-input">
+            <label>Nombre</label>
+            <input asp-for="Nombre" />
+        </div>
+        <div class="paciente-input">
+            <label>Apellido</label>
+            <input asp-for="Apellido" />
+        </div>
+        <div class="paciente-input">
+            <label>Email</label>
+            <input asp-for="Email" />
+        </div>
+        <div class="paciente-input">
+            <label>Telefono</label>
+            <input asp-for="Telefono"/>
+        </div>
+        <hr/>
+        <button type="submit" class="btn-guardar">Guardar</button>
+
+    </form>
+
+    <hr />
+    <a asp-action="Index" class="link-cancelar">&larr; Cancelar</a>
+
+</div>
