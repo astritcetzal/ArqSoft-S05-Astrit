@@ -50,6 +50,10 @@ namespace Citas_App.Application.Services
         {
            _repo.Eliminar(id);
         }
+        public void EditarCita(Cita cita)
+        {
+            _repo.EditarCita(cita);
+        }
 
     }
 }

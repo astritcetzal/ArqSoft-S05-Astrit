@@ -17,5 +17,6 @@ namespace Citas_App.Application.Interfaces
         public void ConfirmarCita(Cita cita);
 
         public void Eliminar(int id);
+        public void EditarCita(Cita cita);
     }
 }

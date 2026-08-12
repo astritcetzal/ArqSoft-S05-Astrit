@@ -1,7 +1,34 @@
 ﻿@model Citas_App.Domain.Models.Medico
-@using Citas_App.Domain.Models
-<h1>@Model.Nombre @Model.Apellido</h1>
-<p><strong>Especialidad:</strong> @Model.Especialidad</p>
-<p><strong>Número de licencia:</strong> @Model.NumeroLicencia</p>
-<hr />
-<a asp-action="Index" class="btn-agregar-cita">← Volver a la lista</a>
+
+<div class="detalle-card">
+
+    <h1>@Model.Nombre @Model.Apellido</h1>
+
+    <div class="detalle-item">
+        <strong>Especialidad</strong>
+        <p>@Model.Especialidad</p>
+    </div>
+
+    <div class="detalle-item">
+        <strong>Número de licencia</strong>
+        <p>@Model.NumeroLicencia</p>
+    </div>
+    <div class="detalle-item">
+        <strong>Email</strong>
+        <p>@Model.Email</p>
+    </div>
+
+    <br />
+
+    <a asp-action="Editar"
+           asp-route-id="@Model.Id"
+           class="btn-editar">
+        Editar información
+    </a>
+
+    <a asp-action="Index"
+           class="link-cancelar">
+        ← Volver
+    </a>
+
+</div>

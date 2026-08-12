@@ -26,6 +26,7 @@ Web  → Application → Domain ← Infrastructure
 Api  → Application → Domain ← Infrastructure
 ```
 
+
 ## Entidades
 - **Paciente** — lista y detalle de pacientes registrados
 - **Médico** — lista y detalle de médicos disponibles

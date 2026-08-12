@@ -32,5 +32,9 @@ namespace Citas_App.Application.Services
         {
             _repo.Eliminar(id);
         }
+
+        public void Editar(Medico medico) { 
+        _repo.EditaMedico(medico);
+                }
     }
 }

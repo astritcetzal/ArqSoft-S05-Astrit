@@ -42,5 +42,28 @@ namespace Citas_App.Web.Controllers
             _pacienteSer.Eliminar(id);
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Editar(int id)
+        {
+            var paciente = _pacienteSer.ObtenerPorId(id);
+
+            if (paciente == null)
+                return NotFound();
+
+            return View(paciente);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Editar(Paciente paciente)
+        {
+            if (!ModelState.IsValid)
+                return View(paciente);
+
+            _pacienteSer.Editar(paciente);
+
+            return RedirectToAction("Detalle", new { id = paciente.Id });
+        }
     }
 }

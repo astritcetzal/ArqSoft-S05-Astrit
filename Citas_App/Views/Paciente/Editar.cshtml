@@ -1,0 +1,45 @@
+﻿@model Citas_App.Domain.Models.Paciente
+
+<div class="contenedor-formulario">
+
+    <h1>Editar paciente</h1>
+
+    <form asp-action="Editar" method="post">
+
+        <input type="hidden" asp-for="Id" />
+
+        <div class="paciente-input">
+            <label asp-for="Nombre">Nombre</label>
+            <input asp-for="Nombre" />
+        </div>
+
+        <div class="paciente-input">
+            <label asp-for="Apellido">Apellido</label>
+            <input asp-for="Apellido" />
+        </div>
+
+        <div class="paciente-input">
+            <label asp-for="Email">Email</label>
+            <input asp-for="Email" />
+        </div>
+
+        <div class="paciente-input">
+            <label asp-for="Telefono">Teléfono</label>
+            <input asp-for="Telefono" />
+        </div>
+
+        <hr />
+
+        <button type="submit" class="btn-guardar">
+            Guardar cambios
+        </button>
+
+    </form>
+
+    <hr />
+
+    <a asp-action="Detalle" asp-route-id="@Model.Id" class="link-cancelar">
+        ← Cancelar
+    </a>
+
+</div>

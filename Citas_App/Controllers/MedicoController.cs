@@ -46,6 +46,24 @@ namespace Citas_App.Web.Controllers
             _medicoSer.Eliminar(id);
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Editar(int id )
+        {
+            var medico = _medicoSer.ObtenerPorId(id);
+            if (medico == null) return NotFound();
+            return View("Editar", medico);
+        }
+        
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Editar(Medico medico)
+        {
+            var medicoExistente = _medicoSer.ObtenerPorId(medico.Id);
+            if (medicoExistente == null) return NotFound();
+            _medicoSer.Editar(medico);
+            return RedirectToAction("Detalle", new { id = medico.Id });
+        }
     }
 
 }

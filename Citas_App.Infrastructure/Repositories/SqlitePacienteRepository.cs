@@ -115,5 +115,25 @@ namespace Citas_App.Infrastructure.Repositories
             cmd.Parameters.AddWithValue("$id", id);
             cmd.ExecuteNonQuery();
         }
+        public void Editar(Paciente paciente)
+        {
+            using var conn = new SqliteConnection(_connectionString);
+            conn.Open();
+            var cmd = conn.CreateCommand();
+            cmd.CommandText = @"
+                UPDATE Pacientes
+                SET Nombre = $nombre,
+                    Apellido = $apellido,
+                    Email = $email,
+                    Telefono = $telefono
+                WHERE Id = $id;";
+            cmd.Parameters.AddWithValue("$nombre", paciente.Nombre ?? (object)DBNull.Value);
+            cmd.Parameters.AddWithValue("$apellido", paciente.Apellido ?? (object)DBNull.Value);
+            cmd.Parameters.AddWithValue("$email", paciente.Email ?? string.Empty);
+            cmd.Parameters.AddWithValue("$telefono", paciente.Telefono ?? string.Empty);
+            cmd.Parameters.AddWithValue("$id", paciente.Id);
+            cmd.ExecuteNonQuery();
+        
+        }
     }
 }
