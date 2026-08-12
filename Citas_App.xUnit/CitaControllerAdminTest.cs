@@ -34,6 +34,11 @@ namespace Citas_App.xUnit // Ajustado para quitar la advertencia azul (IDE0130)
         {
             throw new NotImplementedException();
         }
+
+        public void EditarCita(Cita cita)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class PacienteRepositoryFake : IPacienteRepository
@@ -46,6 +51,11 @@ namespace Citas_App.xUnit // Ajustado para quitar la advertencia azul (IDE0130)
 
         public void Agregar(Paciente paciente) => throw new NotImplementedException();
         public void Eliminar(int id) => throw new NotImplementedException();
+
+        public void Editar(Paciente paciente)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class MedicoRepositoryFake : IMedicoRepository
@@ -58,6 +68,11 @@ namespace Citas_App.xUnit // Ajustado para quitar la advertencia azul (IDE0130)
 
         public void Agregar(Medico medico) => throw new NotImplementedException();
         public void Eliminar(int id) => throw new NotImplementedException();
+
+        public void EditaMedico(Medico medico)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     // --------------------------------------------------------------------

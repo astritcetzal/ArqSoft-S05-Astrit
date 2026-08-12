@@ -46,5 +46,9 @@ namespace Citas_App.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
+        public void Editar(Paciente paciente)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

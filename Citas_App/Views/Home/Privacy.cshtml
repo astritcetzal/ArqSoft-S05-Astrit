@@ -1,36 +1,100 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Política de Privacidad";
 }
+
 <h1>@ViewData["Title"]</h1>
 
 <div class="contenedor-privacidad">
-    <p><strong>Última actualización:</strong> 5 de junio de 2026</p>
 
-    <p>En <strong>Citas App</strong>, respetamos su privacidad y estamos comprometidos a proteger los datos personales que se gestionan a través de nuestra plataforma. Esta política explica cómo recopilamos, utilizamos y protegemos la información.</p>
+    
+    <p><strong>Última actualización:</strong> 11 de agosto de 2026</p>
 
-    <hr style="border-color: var(--azul-pastel); margin: 20px 0;" />
+    <p>
+        En <strong>Citas App</strong>, respetamos la privacidad de los usuarios y estamos comprometidos
+        con el manejo responsable de la información gestionada a través de nuestra plataforma.
+        Esta política explica qué información se recopila, cómo se utiliza y cómo se almacena dentro del sistema.
+    </p>
 
-    <h3 style="color: var(--azul-principal);">1. Información que recopilamos</h3>
-    <p>Para el correcto funcionamiento del sistema de gestión de citas médicas, recopilamos los siguientes datos:</p>
+    <hr class="separador-privacidad" />
+
+    <h3>1. Información que recopilamos</h3>
+
+    <p>
+        Para el correcto funcionamiento del sistema de gestión de citas médicas,
+        recopilamos la información necesaria para administrar pacientes, médicos y citas.
+    </p>
+
     <ul>
-        <li><strong>De los pacientes:</strong> Nombre completo, dirección de correo electrónico y número de teléfono.</li>
-        <li><strong>De los médicos:</strong> Nombre completo, especialidad y número de licencia médica.</li>
-        <li><strong>De las citas:</strong> Fechas, horarios, motivos de consulta y estado de la cita.</li>
+        <li>
+            <strong>De los pacientes:</strong> nombre, apellido, dirección de correo electrónico
+            y número de teléfono.
+        </li>
+        <li>
+            <strong>De los médicos:</strong> nombre, apellido, especialidad, número de licencia
+            y correo electrónico.
+        </li>
+        <li>
+            <strong>De las citas:</strong> paciente asignado, médico asignado, fecha, hora,
+            motivo de la consulta y estado de la cita.
+        </li>
+        <li>
+            <strong>De las cuentas de usuario:</strong> información necesaria para el registro,
+            inicio de sesión y control de acceso según el tipo de usuario.
+        </li>
     </ul>
 
-    <h3 style="color: var(--azul-principal); margin-top: 25px;">2. Uso de la información</h3>
-    <p>La información ingresada en el sistema se utiliza exclusivamente para fines de demostración académica y gestión de la agenda. Los datos permiten vincular a los pacientes con los médicos correspondientes y mantener un registro ordenado del estado de las consultas.</p>
+    <h3>2. Uso de la información</h3>
 
-    <h3 style="color: var(--azul-principal); margin-top: 25px;">3. Protección y Almacenamiento de Datos</h3>
-    <p>Al ser un proyecto de desarrollo de software universitario,los datos recopilados se almacenan localmente en archivos de formato JSON con fines de prueba y evaluación técnica. No compartimos, vendemos ni distribuimos esta información a terceros ni a bases de datos externas.</p>
+    <p>
+        La información registrada en Citas App se utiliza exclusivamente para el funcionamiento
+        del sistema y la gestión de citas médicas. Estos datos permiten identificar a los usuarios,
+        vincular pacientes con médicos, organizar horarios y mantener un registro del estado
+        de cada cita.
+    </p>
 
-    <h3 style="color: var(--azul-principal); margin-top: 25px;">4. Contacto</h3>
-    <p>Si tiene alguna duda sobre esta política o el manejo de la información dentro del sistema, puedes comunicarte directamente al siguiente enlace: <a href="https://github.com/astritcetzal" target="_blank"><img src="~/images/github-original.svg" class="skill-icon" alt="GitHub"></a></p>
+    <p>
+        Además, el sistema utiliza los roles de usuario para controlar el acceso a las diferentes
+        funcionalidades y mostrar únicamente la información correspondiente a los permisos
+        de cada tipo de cuenta.
+    </p>
+
+    <h3>3. Almacenamiento de la información</h3>
+
+    <p>
+        La información gestionada por el sistema se almacena localmente en una base de datos
+        <strong>SQLite</strong>. Esta base de datos permite mantener organizados los registros
+        de pacientes, médicos y citas utilizados por la aplicación.
+    </p>
+
+    <p>
+        Citas App es un proyecto académico desarrollado con fines educativos y de demostración.
+        La información utilizada dentro del sistema está destinada únicamente a pruebas,
+        desarrollo y evaluación del proyecto.
+    </p>
+
+    <h3>4. Protección de los datos</h3>
+
+    <p>
+        El sistema cuenta con mecanismos de autenticación y autorización para restringir el acceso
+        a determinadas funcionalidades según el rol del usuario. De esta manera, se busca evitar
+        que usuarios sin los permisos correspondientes puedan acceder o realizar modificaciones
+        en información restringida.
+    </p>
+
+    <p>
+        Los datos almacenados no son vendidos, compartidos ni distribuidos a terceros como parte
+        del funcionamiento de este proyecto académico.
+    </p>
+
+    <h3>5. Contacto</h3>
+
+    <p>
+        Si tiene alguna duda sobre esta política de privacidad o sobre el manejo de la información
+        dentro de Citas App, puede comunicarse a través del siguiente perfil:
+        <a href="https://github.com/astritcetzal" target="_blank" rel="noopener noreferrer">
+            <img src="~/images/github-original.svg" class="skill-icon" alt="GitHub" />
+        </a>
+    </p>
     
+
 </div>
-
-
-
-
-

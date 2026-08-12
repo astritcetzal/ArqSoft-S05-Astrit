@@ -10,6 +10,7 @@ namespace Citas_App.Domain.Interfaces
         Cita? ObtenerPorId(int id);
         void Eliminar(int id);
         void ConfirmarCita(int id);
+        void EditarCita(Cita cita);
     }
 
 }

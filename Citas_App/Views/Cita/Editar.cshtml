@@ -1,0 +1,73 @@
+﻿@model Citas_App.Domain.Models.Cita
+
+<div class="contenedor-formulario">
+
+    <h2>Editar detalles de cita</h2>
+
+    <form asp-controller="Cita" asp-action="Editar" method="post">
+
+        <input type="hidden" asp-for="Id" />
+
+        <div class="cita-input">
+            <label asp-for="PacienteId">Paciente</label>
+
+            <select asp-for="PacienteId"
+                    asp-items="ViewBag.Pacientes">
+            </select>
+        </div>
+
+        <div class="cita-input">
+            <label asp-for="MedicoId">Médico</label>
+
+            <select asp-for="MedicoId"
+                    asp-items="ViewBag.Medicos">
+            </select>
+        </div>
+
+        <div class="cita-input">
+            <label asp-for="Fecha">Fecha</label>
+
+            <input asp-for="Fecha"
+                   type="date"
+                   required />
+        </div>
+
+        <div class="cita-input">
+            <label asp-for="Hora">Hora</label>
+
+            <input asp-for="Hora"
+                   type="time"
+                   required />
+        </div>
+
+        <div class="cita-input">
+            <label asp-for="Motivo">Motivo</label>
+
+            <input asp-for="Motivo"
+                   required />
+        </div>
+
+        <div class="cita-input">
+            <label asp-for="Estado">Estado</label>
+
+            <select asp-for="Estado">
+                <option value="Pendiente">Pendiente</option>
+                <option value="Confirmada">Confirmada</option>
+                <option value="Cancelada">Cancelada</option>
+            </select>
+        </div>
+
+        <button type="submit"
+                class="btn-guardar">
+            Guardar cambios
+        </button>
+
+        <a asp-action="PorPaciente"
+               asp-route-pacienteId="@Model.PacienteId"
+               class="link-cancelar">
+            Cancelar
+        </a>
+
+    </form>
+
+</div>

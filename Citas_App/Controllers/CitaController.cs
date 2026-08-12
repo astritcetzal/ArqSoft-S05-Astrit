@@ -1,6 +1,7 @@
 ﻿using Citas_App.Application.Interfaces;
 using Citas_App.Application.Services;
 using Citas_App.Domain.Interfaces;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Authorization;
 using Citas_App.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -143,6 +144,52 @@ namespace Citas_App.Web.Controllers
         {
             _citaSer.Eliminar(id);
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Editar(int id)
+        {
+            var cita = _citaSer.ObtenerPorId(id);
+            if (cita == null) return NotFound();
+            ViewBag.Pacientes = _pacienteSer.ObtenerTodos().Select(p => new SelectListItem
+                {
+                    Value = p.Id.ToString(),
+                    Text = $"{p.Nombre} {p.Apellido}",
+                    Selected = p.Id == cita.PacienteId
+                }).ToList();
+            ViewBag.Medicos = _medicoSer.ObtenerTodos().Select(m => new SelectListItem
+                {
+                    Value = m.Id.ToString(),
+                    Text = $"{m.Nombre} {m.Apellido}",
+                    Selected = m.Id == cita.MedicoId
+                }).ToList();
+            return View("Editar", cita);
+        }
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Editar(Cita cita)
+        {
+            var citaExistente = _citaSer.ObtenerPorId(cita.Id);
+            if (citaExistente == null) return NotFound();
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Pacientes = _pacienteSer.ObtenerTodos().Select(p => new SelectListItem
+                    {
+                        Value = p.Id.ToString(),
+                        Text = $"{p.Nombre} {p.Apellido}",
+                        Selected = p.Id == cita.PacienteId
+                    }).ToList();
+                ViewBag.Medicos = _medicoSer.ObtenerTodos().Select(m => new SelectListItem
+                    {
+                        Value = m.Id.ToString(),
+                        Text = $"{m.Nombre} {m.Apellido}",
+                        Selected = m.Id == cita.MedicoId
+                    }).ToList();
+                return View("Editar", cita);
+            }
+            _citaSer.EditarCita(cita);
+            return RedirectToAction( "PorPaciente",new { pacienteId = cita.PacienteId });
         }
     }
 }

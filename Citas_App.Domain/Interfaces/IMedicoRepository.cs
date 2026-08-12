@@ -6,7 +6,7 @@ namespace Citas_App.Domain.Interfaces
         List<Medico> ObtenerTodos();
         Medico? ObtenerPorId(int id);
         void Agregar(Medico medico);
-
+        void EditaMedico(Medico medico);
         void Eliminar(int id);
     }
 }

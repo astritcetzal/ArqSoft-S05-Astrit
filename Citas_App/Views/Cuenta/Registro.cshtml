@@ -1,83 +1,109 @@
-﻿@model Citas_App.Web.ViewModel.RegistroViewModel;
+﻿@model Citas_App.Web.ViewModel.RegistroViewModel
+
 @{
     ViewData["Title"] = "Registro";
 }
 
+<div class="auth-container">
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-5">
-            <div class="card shadow-sm border-0">
-                <div class="card-body p-4">
-                    <h2 class="text-center mb-4 text-primary">Crear Cuenta</h2>
-                    <p class="text-muted text-center mb-4">Regístrate para comenzar a gestionar tus citas médicas.</p>
+    <div class="auth-card">
 
-                    <form asp-action="Registro" method="post">
-                        <!-- Resumen de errores de validación de Identity -->
-                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
-                        <!-- Campo: Nombre --> 
-                        <div class="mb-3">
-                            <label asp-for="Nombre" class="form-label">Nombre</label>
-                            <input asp-for="Nombre" class="form-control" placeholder="Ingresa tu nombre" autofocus />
-                            <span asp-validation-for="Nombre" class="text-danger small"></span>
-                        </div>
-                        <!-- Campo: Apellido -->
-                        <div class="mb-3">
-                            <label asp-for="Apellido" class="form-label">Apellido</label>
-                            <input asp-for="Apellido" class="form-control" placeholder="Ingresa tu apellido" />
-                            <span asp-validation-for="Apellido" class="text-danger small"></span>
+        <div class="auth-card-body">
 
-                        </div>
-                        <!-- Campo: Correo Electrónico (¡Muy importante!) -->
-                        <div class="mb-3">
-                            <label asp-for="Email" class="form-label">Correo Electrónico</label>
-                            <input asp-for="Email" type="email" class="form-control" placeholder="ejemplo@correo.com" />
-                            <span asp-validation-for="Email" class="text-danger small"></span>
-                        </div>
+            <h2 class="auth-title">Crear Cuenta</h2>
 
-                        <!-- Campo: Rol (Selector para hacer pruebas) -->
-                        <div class="mb-3">
-                            <label asp-for="Rol" class="form-label">Tipo de Cuenta</label>
-                            <select asp-for="Rol" class="form-select">
-                                <option value="Paciente">Paciente</option>
-                                <option value="Medico">Médico</option>
-                                <option value="Admin">Administrador</option>
-                            </select>
-                        </div>
+            <p class="auth-subtitle">
+                Regístrate para comenzar a gestionar tus citas médicas.
+            </p>
 
-                        <!-- Campo: Contraseña -->
-                        <div class="mb-3">
-                            <label asp-for="Password" class="form-label">Contraseña</label>
-                            <input asp-for="Password" type="password" class="form-control" placeholder="••••••••" />
-                            <span asp-validation-for="Password" class="text-danger small"></span>
-                        </div>
+            <form asp-action="Registro" method="post">
 
-                        <!-- Campo: Confirmar Contraseña -->
-                        <div class="mb-4">
-                            <label asp-for="ConfirmPassword" class="form-label">Confirmar Contraseña</label>
-                            <input asp-for="ConfirmPassword" class="form-control" placeholder="••••••••" />
-                            <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
-                        </div>
-
-                        <!-- Botón de Envío -->
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary btn-lg">Registrarse</button>
-                        </div>
-                    </form>
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger mb-3"
+                     role="alert">
                 </div>
-                <div class="card-footer bg-light text-center py-3 border-0">
-                    <span class="text-muted">¿Ya tienes cuenta?</span>
-                    <a asp-action="Login" class="text-decoration-none fw-bold">Inicia sesión aquí</a>
+
+                <!-- Nombre -->
+                <div class="auth-field">
+                    <label asp-for="Nombre">Nombre</label>
+                    <input asp-for="Nombre"
+                           placeholder="Ingresa tu nombre"
+                           autofocus />
+                    <span asp-validation-for="Nombre"></span>
                 </div>
-            </div>
+
+                <!-- Apellido -->
+                <div class="auth-field">
+                    <label asp-for="Apellido">Apellido</label>
+                    <input asp-for="Apellido"
+                           placeholder="Ingresa tu apellido" />
+                    <span asp-validation-for="Apellido"></span>
+                </div>
+
+                <!-- Email -->
+                <div class="auth-field">
+                    <label asp-for="Email">Correo Electrónico</label>
+                    <input asp-for="Email"
+                           type="email"
+                           placeholder="ejemplo@correo.com" />
+                    <span asp-validation-for="Email"></span>
+                </div>
+
+                <!-- Rol -->
+                <div class="auth-field">
+                    <label asp-for="Rol">Tipo de Cuenta</label>
+
+                    <select asp-for="Rol">
+                        <option value="Paciente">Paciente</option>
+                        <option value="Medico">Médico</option>
+                        <option value="Admin">Administrador</option>
+                    </select>
+                </div>
+
+                <!-- Contraseña -->
+                <div class="auth-field">
+                    <label asp-for="Password">Contraseña</label>
+
+                    <input asp-for="Password"
+                           type="password"
+                           placeholder="••••••••" />
+
+                    <span asp-validation-for="Password"></span>
+                </div>
+
+                <!-- Confirmar contraseña -->
+                <div class="auth-field">
+                    <label asp-for="ConfirmPassword">
+                        Confirmar Contraseña
+                    </label>
+
+                    <input asp-for="ConfirmPassword"
+                           type="password"
+                           placeholder="••••••••" />
+
+                    <span asp-validation-for="ConfirmPassword"></span>
+                </div>
+
+                <button type="submit" class="auth-button">
+                    Registrarse
+                </button>
+
+            </form>
+
         </div>
+
+        <div class="auth-footer">
+            <span>¿Ya tienes cuenta?</span>
+
+            <a asp-action="Login">
+                Inicia sesión aquí
+            </a>
+        </div>
+
     </div>
+
 </div>
 
-@section Scripts{
-    <!-- Scripts nativos de jQuery Validation para validar en el cliente sin recargar la página -->
+@section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
-
-
-

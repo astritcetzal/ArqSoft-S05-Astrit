@@ -12,5 +12,6 @@ namespace Citas_App.Application.Interfaces
         public Medico? ObtenerPorId(int id);
         public void Agregar(Medico medico);
         public void Eliminar(int id);
+        public void Editar(Medico medico);
     }
 }

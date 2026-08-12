@@ -17,23 +17,45 @@
         <th>Médico</th>
         <th>Motivo</th>
         <th>Estado</th>
+        <th>Acciones</th>
     </tr>
+
     @foreach (var c in Model)
     {
         var medico = medicos?.FirstOrDefault(m => m.Id == c.MedicoId);
+
         <tr>
             <td>@c.Fecha.ToString("dd/MM/yyyy")</td>
-            <td>@c.Hora.ToString("HH:mm")</td>
-            <td>@(paciente != null ? $"{paciente.Nombre} {paciente.Apellido}" : "-")</td>
-            <td>@(medico != null ? $"{medico.Nombre} {medico.Apellido}" : "—")</td>
-            <td>@c.Motivo</td>
-            <td>@c.Estado</td>
-        </tr>
 
-        
+            <td>@c.Hora.ToString("HH:mm")</td>
+
+            <td>
+                @(paciente != null
+                    ? $"{paciente.Nombre} {paciente.Apellido}"
+                    : "-")
+            </td>
+
+            <td>
+                @(medico != null
+                    ? $"{medico.Nombre} {medico.Apellido}"
+                    : "—")
+            </td>
+
+            <td>@c.Motivo</td>
+
+            <td>@c.Estado</td>
+
+            <td>
+                <a asp-action="Editar"
+                       asp-route-id="@c.Id">
+                    Editar
+                </a>
+            </td>
+        </tr>
     }
 </table>
 
 <br/>
 <a asp-action="Index" class="btn-agregar-cita"> Regresar a citas</a>
 <br/>
+

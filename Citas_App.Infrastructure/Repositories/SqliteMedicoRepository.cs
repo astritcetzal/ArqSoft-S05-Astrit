@@ -97,6 +97,21 @@ namespace Citas_App.Infrastructure.Repositories
             cmd.Parameters.AddWithValue("$id", id);
             cmd.ExecuteNonQuery(); conn.Close();
         }
+
+        public void EditaMedico(Medico medico)
+        {
+            using var conn = new SqliteConnection(_connectionString);
+            conn.Open();
+            var cmd = conn.CreateCommand();
+            cmd.CommandText = "UPDATE Medicos SET Nombre = $nombre, Apellido = $apellido, Especialidad = $especialidad, NumeroLicencia = $numeroLicencia, Email = $email WHERE Id = $id;";
+            cmd.Parameters.AddWithValue("$nombre", medico.Nombre ?? (object)DBNull.Value);
+            cmd.Parameters.AddWithValue("$apellido", medico.Apellido ?? (object)DBNull.Value);
+            cmd.Parameters.AddWithValue("$especialidad", medico.Especialidad ?? string.Empty);
+            cmd.Parameters.AddWithValue("$numeroLicencia", medico.NumeroLicencia ?? string.Empty);
+            cmd.Parameters.AddWithValue("$email", medico.Email ?? string.Empty);
+            cmd.Parameters.AddWithValue("$id", medico.Id);
+            cmd.ExecuteNonQuery();
+        }
     }
 
 }

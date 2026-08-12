@@ -1,0 +1,32 @@
+﻿@model Citas_App.Domain.Models.Medico
+@using Citas_App.Domain.Models
+<div class="cont-edit">
+    <h2>Editar Información de los médicos</h2>
+    <form asp-controller="Medico" asp-action="Editar" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div class="grupo-input">
+            <label asp-for="Nombre">Nombre</label>
+            <input asp-for="Nombre" required/>
+        </div>
+        <div class="grupo-input">
+            <label asp-for="Apellido">Apellido</label>
+            <input asp-for="Apellido" required />
+        </div>
+        <div class="grupo-input">
+            <label asp-for="Especialidad">Especialidad</label>
+            <input asp-for="Especialidad" required />
+        </div>
+        <div class="grupo-input">
+            <label asp-for="NumeroLicencia">Número de licencia</label>
+            <input asp-for="NumeroLicencia" required />
+        </div>
+        <div CLASS="grupo-input">
+            <label asp-for="Email">Email</label>
+            <input asp-for="Email" required />
+        </div>
+        <div class="grupo-input">
+            <button type="submit" class="btn-agregar-medico">Guardar cambios</button>
+            <a asp-action="Detalle" asp-route-id="@Model.Id" class="link-cancelar">Cancelar</a>
+        </div>
+    </form>
+</div>

@@ -142,5 +142,28 @@ namespace Citas_App.Infrastructure.Repositories
             cmd.Parameters.AddWithValue("$id", id);
             cmd.ExecuteNonQuery();
         }
+
+        public void EditarCita(Cita cita)
+        {
+            using var conn = Conectar();
+            var cmd = conn.CreateCommand();
+            cmd.CommandText = @"
+                UPDATE Citas
+                SET PacienteId = $pid,
+                    MedicoId   = $mid,
+                    Fecha      = $fecha,
+                    Hora       = $hora,
+                    Motivo     = $motivo,
+                    Estado     = $estado
+                WHERE Id = $id;";
+            cmd.Parameters.AddWithValue("$pid",    cita.PacienteId);
+            cmd.Parameters.AddWithValue("$mid",    cita.MedicoId);
+            cmd.Parameters.AddWithValue("$fecha",  cita.Fecha.ToString("yyyy-MM-dd"));
+            cmd.Parameters.AddWithValue("$hora",   cita.Hora.ToString("HH:mm"));
+            cmd.Parameters.AddWithValue("$motivo", cita.Motivo ?? string.Empty);
+            cmd.Parameters.AddWithValue("$estado", cita.Estado ?? "Pendiente");
+            cmd.Parameters.AddWithValue("$id",     cita.Id);
+            cmd.ExecuteNonQuery();
+        }
     }
 }

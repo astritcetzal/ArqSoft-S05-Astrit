@@ -10,5 +10,6 @@ namespace Citas_App.Domain.Interfaces
 
         void Agregar(Paciente paciente);
         void Eliminar (int id);
+        void Editar(Paciente paciente);
     }
 }

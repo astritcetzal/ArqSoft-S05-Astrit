@@ -81,11 +81,11 @@ La solución consiste en migran la capa de instraestructura a un motor SQLite me
 
 ## ⬇️ Entra al siguiente enlace para ver el diagrama UML de la arquitectura del sistema sistema:
 
-➡️ [Haz clic aquí para ver el Diagrama de Clases](docs/diagrama.md)
+➡️ [Haz clic aquí para ver el Diagrama de Clases](Citas_App/docs/diagrama.md)
 
-![Captura]( docs/pruebas_get.png )
+![Captura]( Citas_App/docs/pruebas_get.png )
 
-![Captura]( docs/Sms_Email.png )
+![Captura]( Citas_App/docs/Sms_Email.png )
 
 
 ## Proceso de Desarrollo y Resolución de Retos
