@@ -6,7 +6,6 @@
 - **Cuatrimestre:** Tercer Cuatrimestre
 - **Carrera:** TSU en Desarrollo e Innovación de Software
 - **Profesor:** Jorge Javier Pedrozo Romero
-
 -----
 App de citas médicas construida con ASP.NET Core (.NET 10).
 
