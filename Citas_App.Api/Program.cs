@@ -1,30 +1,33 @@
 using Citas_App.Application.Services;
 using Citas_App.Domain.Interfaces;
 using Citas_App.Infrastructure.Repositories;
-using Citas_App.Infrastructure.Observers; 
+using Citas_App.Infrastructure.Observers;
+
+SQLitePCL.Batteries.Init();
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddControllers();
 
-// ── 1. Ruta compartida de SQLite (Apunta a la carpeta de la Web) ──
+// ── SWAGGER: Registro de servicios ──
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+// ── 1. Ruta compartida de SQLite ──
 var dataFolder = Path.Combine(builder.Environment.ContentRootPath, "..", "Citas_App", "data");
 var sqlitePath = Path.Combine(dataFolder, "citasapp.db");
 
-// ── 2. Inyección de Repositorios (Igual que en la Web, pero con Decorator) ──
-
-// Pacientes: Usamos SQLite y lo envolvemos con el Decorator que pide el profe
+// ── 2. Inyección de Repositorios ──
 builder.Services.AddScoped<IPacienteRepository>(sp =>
 {
     var repo = new SqlitePacienteRepository(sqlitePath);
     return new LoggingPacienteRepository(repo);
 });
 
-// Médicos y Citas: Directo a SQLite
 builder.Services.AddScoped<IMedicoRepository>(_ => new SqliteMedicoRepository(sqlitePath));
 builder.Services.AddScoped<ICitaRepository>(_ => new SqliteCitaRepository(sqlitePath));
 
 // ── 3. Observers ──
-// Descomenta esto si tienes creados el SmsObserver y EmailObserver
 builder.Services.AddScoped<ICitaObserver, SmsObserver>();
 builder.Services.AddScoped<ICitaObserver, EmailObserver>();
 
@@ -46,8 +49,17 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+// ── SWAGGER: Middleware ──
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "CitasApp API v1");
+    c.RoutePrefix = "swagger";
+});
+
 app.UseCors("PermitirTodo");
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+
 app.Run();
