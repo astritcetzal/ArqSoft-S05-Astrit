@@ -24,19 +24,21 @@ namespace Citas_App.Api.Controllers
             var paciente = _service.ObtenerPorId(id);
             return paciente == null ? NotFound() : Ok(paciente);
         }
-        [HttpDelete("{Id}")]
-        public IActionResult Eliminar(int id)
+        [HttpDelete("{id}")]
+        public IActionResult Eliminar([FromRoute] int id)
         {
+            // 1. Validar si existe primero
             var paciente = _service.ObtenerPorId(id);
-
             if (paciente == null)
             {
                 return NotFound(new { mensaje = $"No se encontró el paciente con ID {id}" });
             }
 
+            // 2. Ejecutar la eliminación
             _service.Eliminar(id);
 
-            return Ok(new { mensaje = "Paciente eliminado exitosamente", paciente = paciente });
+            // 3. Responder con éxito
+            return Ok(new { mensaje = $"Paciente con ID {id} eliminado correctamente" });
         }
     }
 

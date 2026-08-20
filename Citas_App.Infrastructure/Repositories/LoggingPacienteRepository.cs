@@ -38,12 +38,14 @@ namespace Citas_App.Infrastructure.Repositories
 
         public void Agregar(Paciente paciente)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] [LOG] Agregando paciente: {paciente.Nombre}");
+            _inner.Agregar(paciente); // Delegar al repositorio real (SQLite)
         }
 
         public void Eliminar(int id)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] [LOG] Eliminando paciente con ID: {id}");
+            _inner.Eliminar(id); // Delegar al repositorio real (SQLite)
         }
 
         public void Editar(Paciente paciente)

@@ -23,12 +23,13 @@ namespace Citas_App.Web.Controllers
             var paciente = _pacienteSer.ObtenerPorId(id);
             return paciente == null ? NotFound() : View(paciente);
         }
-       
+
+        [Authorize(Roles = "Admin")]
         public IActionResult Agregar()
         {
             return View();
         }
-        
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Agregar(Paciente paciente)
         {

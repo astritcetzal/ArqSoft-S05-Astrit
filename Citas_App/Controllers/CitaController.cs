@@ -77,7 +77,7 @@ namespace Citas_App.Web.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin, Paciente")] // Los médicos no agendan citas
+        [Authorize(Roles = "Admin")] // Los médicos no agendan citas
         public IActionResult Agregar()
         {
             // Los médicos siempre se muestran todos para que el paciente elija con quién ir
@@ -110,7 +110,7 @@ namespace Citas_App.Web.Controllers
 
         // Formulario — POST
         [HttpPost]
-        [Authorize(Roles = "Admin, Paciente")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Agregar(Cita cita)
         {
             // SEGURIDAD: Si es paciente, forzamos su ID sin importar lo que mande el formulario

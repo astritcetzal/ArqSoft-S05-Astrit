@@ -35,6 +35,7 @@ namespace Citas_App.Web.Controllers
 
         
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Agregar(Medico medico)
         {
             _medicoSer.Agregar(medico);
