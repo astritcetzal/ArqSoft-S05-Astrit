@@ -1,8 +1,8 @@
 using Citas_App.Application.Services;
 using Citas_App.Domain.Interfaces;
 using Citas_App.Infrastructure.Repositories;
-using Citas_App.Infrastructure.Observers; 
-
+using Citas_App.Infrastructure.Observers;
+SQLitePCL.Batteries.Init();
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
